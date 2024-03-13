@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import { BunnyProfileComponent } from './bunny-profile/bunny-profile.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
+import { BunnyDetailsComponent } from './bunny-details/bunny-details.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BunnyProfileComponent,
-    MoreInfoComponent
+    MoreInfoComponent,
+    BunnyDetailsComponent
   ],
   imports: [
     BrowserModule,
