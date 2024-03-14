@@ -9,6 +9,5 @@ import { Bunny } from '../bunny';
 })
 export class BunnyDetailsComponent {
 
-  bunnies: Bunny[] = [];
 
 }
