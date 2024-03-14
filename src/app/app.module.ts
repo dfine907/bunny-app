@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
-import { BunnyDetailsComponent } from './bunny-details/bunny-details.component';
+import { BunnyFormComponent } from './bunny-form/bunny-form.component';
 import { DisplayCardComponent } from './display-card/display-card.component';
 import { ListedCardsComponent } from './listed-cards/listed-cards.component';
 @NgModule({
@@ -15,7 +15,7 @@ import { ListedCardsComponent } from './listed-cards/listed-cards.component';
     AppComponent,
     HomeComponent,
     MoreInfoComponent,
-    BunnyDetailsComponent,
+    BunnyFormComponent,
     DisplayCardComponent,
     ListedCardsComponent
   ],
