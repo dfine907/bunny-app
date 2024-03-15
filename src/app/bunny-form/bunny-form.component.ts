@@ -11,16 +11,24 @@ export class BunnyFormComponent {
   bunny: Bunny = {
     id: 1,
     name: '',
+    birthday: '',
+    gender: '',
     breed: '',
     age: 0,
     weight: 0,
-    birthday: '',
+    
   };
+
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
+
   onAddBunny() {
     this.bunnyAdditiondStatus = 'Bunny was added!';
-    console.log(this.bunny);
+    console.log(this.bunny.name, this.bunny.age, this.bunny.birthday);
+  }
+
+  onSubmit() {
+    console.log("Submitted")
   }
 }

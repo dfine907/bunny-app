@@ -12,10 +12,11 @@ export class DisplayCardComponent {
   bunny: Bunny= {
     id: 1,
     name: "Darwin",
+    birthday: "April, 10, 2022",
     breed: "Rex",
+    gender: 'male',
     age: 2,
     weight: 4,
-    birthday: "April, 10, 2022"
   };
   
 }
