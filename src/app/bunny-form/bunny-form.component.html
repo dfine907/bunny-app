@@ -8,18 +8,18 @@
         </div>
         <div>
             <label class="m-2" for="birthday">Birthday:</label>
-            <input class="m-2" type="date" id="birthday" name="birthday" required>
+            <input class="m-2" type="date" id="birthday" name="birthday">
         </div>
         <div>
             <label class="m-2" for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
+            <select id="gender" name="gender">
                 <option value="">Choose</option>
                 <option value="male">Boy Buns</option>
                 <option value="female">Girl Buns</option>
             </select>
 
             <label class="m-2" for="breed">Breed:</label>
-            <select id="breed" name="breed" required>
+            <select id="breed" name="breed">
                 <option value="">Choose</option>
                 <option value="male">Holland Lop</option>
                 <option value="female">Dutch</option>
@@ -30,12 +30,12 @@
         </div>
 
         <div>
-            <label class="m-2" for="weight">Weight:</label>
-            <input class="m-2" type="number" id="weight" name="weight" >
+            <label class="m-2" for="weight">Weight (lbs):</label>
+            <input class="m-2" type="number" id="weight" name="weight">
         </div>
-        
-            <button class="btn btn-info m-2" type="submit" (click)="onAddBunny()" >Add Bunny</button>
-        
+
+        <button class="btn btn-info m-2" type="submit" (click)="onAddBunny()">Add Bunny</button>
+
     </form>
-    <p>{{bunnyAdditiondStatus}} </p>
+    <p class="m-2">{{bunnyAdditiondStatus}} </p>
 </div>

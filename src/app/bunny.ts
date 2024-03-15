@@ -3,5 +3,6 @@ export interface Bunny {
     name: string;
     breed: string;
     age: number;
+    weight: number,
     birthday: string;
   }
