@@ -9,5 +9,12 @@ import { Bunny } from '../bunny';
 })
 export class BunnyFormComponent {
 
+  bunnyAdditiondStatus = "No Buns Added Yet"
+
+  onAddBunny() {
+     this.bunnyAdditiondStatus = "Bunny was added!"
+     console.log("Bun added success")
+  }
+
 
 }

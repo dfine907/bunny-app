@@ -1,5 +1,3 @@
-
-
 <div class="border border-danger m-3 rounded-2">
     <h3 class="text-danger">Bunny Form Component</h3>
 
@@ -32,11 +30,12 @@
         </div>
 
         <div>
-            <label class="m-2" for="weight">Weigth:</label>
+            <label class="m-2" for="weight">Weight:</label>
             <input class="m-2" type="number" id="weight" name="weight" >
         </div>
-        <div>
-            <button class="m-2" type="submit">Submit</button>
-        </div>
+        
+            <button class="btn btn-info m-2" type="submit" (click)="onAddBunny()" >Add Bunny</button>
+        
     </form>
+    <p>{{bunnyAdditiondStatus}} </p>
 </div>
