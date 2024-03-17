@@ -1,7 +1,9 @@
+
+ 
  <div class="border border-danger m-3 rounded-2">
     <h3 class="text-danger">Bunny Form Component</h3>
 
-    <form (ngSubmit)="onSubmit()">
+    <form #bunnyForm="ngForm" (ngSubmit)="onSubmit()">
         <div>
             <label class="m-2" for="name">Name:</label>
             <input [(ngModel)]="bunny.name" type="text" id="name" name="name" required>
