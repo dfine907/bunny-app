@@ -1,34 +1,35 @@
 import { Component } from '@angular/core';
 import { Bunny } from '../bunny';
+import { BunnyService } from '../bunny.service';
 
 @Component({
   selector: 'app-bunny-form',
   templateUrl: './bunny-form.component.html',
   styleUrls: ['./bunny-form.component.css'],
 })
-
 export class BunnyFormComponent {
+  // bunny = new Bunny()
+  // I think need to invoke the class w/ a created constructor for each new instance
+  constructor(private bunnyService: BunnyService) {}
+
   bunny: Bunny = {
     id: 1,
     name: '',
-    birthday: '',
     gender: '',
     breed: '',
     age: 0,
     weight: 0,
-    
   };
-
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
-
   onAddBunny() {
     this.bunnyAdditiondStatus = 'Bunny was added!';
-    console.log(this.bunny.name, this.bunny.age, this.bunny.birthday);
+    this.bunnyService.addBunny(this.bunny);
   }
 
   onSubmit() {
-    console.log("Submitted")
+    console.log('Submitted');
+    console.log(typeof this.bunny);
   }
 }

@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
-
 import { Bunny } from './bunny';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BunnyService {
+  bunnies: Bunny[] = [];
 
-  constructor() { }
+  addBunny(bunny: Bunny) {
+    this.bunnies.push(bunny);
+  }
+
+  getBunnies(): Bunny[] {
+    return this.bunnies;
+  }
+
 }

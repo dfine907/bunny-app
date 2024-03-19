@@ -1,1 +1,8 @@
-<p>bunny-list works!</p>
+<div class="border border-success m-2 rounded-2">
+  <p>Bunnies to be added: </p>
+  <div class="m-3" *ngFor="let bunny of bunnies">
+    <p>{{ bunny.name }}</p>
+    <p>{{ bunny.age }} years old</p>
+    <p>{{ bunny.weight}} pounds</p>                    
+  </div>
+</div>
