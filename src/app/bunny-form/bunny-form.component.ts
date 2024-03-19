@@ -10,7 +10,8 @@ import { BunnyService } from '../bunny.service';
 export class BunnyFormComponent {
   
   // I think need to invoke the class w/ a created constructor for each new instance
-  constructor(private bunnyService: BunnyService) {}
+  constructor(private bunnyService: BunnyService) { 
+  }
 
   bunny: Bunny = {
     id: 1,
