@@ -8,7 +8,7 @@ import { BunnyService } from '../bunny.service';
   styleUrls: ['./bunny-form.component.css'],
 })
 export class BunnyFormComponent {
-  // bunny = new Bunny()
+  
   // I think need to invoke the class w/ a created constructor for each new instance
   constructor(private bunnyService: BunnyService) {}
 

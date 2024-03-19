@@ -1,39 +1,43 @@
-<div class="border border-danger m-3 rounded-2">
-    <h3 class="text-danger">Bunny Form Component</h3>
+<div class="container">
+    <div class="border border-danger m-3 rounded-2">
+        <h3 class="text-danger">Bunny Form</h3>
 
-    <form (submit)="onSubmit()">
-        <div>
-            <label class="m-2" for="name">Name:</label>
-            <input [(ngModel)]="bunny.name" type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label class="m-2" for="name">Age:</label>
-            <input [(ngModel)]="bunny.age" type="text" id="age" name="age" required>
-        </div>
-        <div>
-            <label class="m-2" for="gender">Gender:</label>
-            <select [(ngModel)]="bunny.gender"  id="gender" name="gender">
-                <option value="">Choose</option>
-                <option value="male">Boy Buns</option>
-                <option value="female">Girl Buns</option>
-            </select>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group p-1">
+                <label class="m-2" for="name">Name:</label>
+                <input [(ngModel)]="bunny.name" type="text" id="name" name="name" required>
+            </div>
+            <!-- **** NAME -->
+            <div>
+                <label class="m-2" for="name">Age:</label>
+                <input [(ngModel)]="bunny.age" type="number" id="age" name="age" required>
+            </div>
+            <!-- **** GENDER -->
+            <div class="form-group">
+                <label class="m-2" for="gender">Gender:</label>
+                <select class="p-1" [(ngModel)]="bunny.gender" id="gender" name="gender">
+                    <option value="">Choose</option>
+                    <option value="male">Boy Buns</option>
+                    <option value="female">Girl Buns</option>
+                </select>
+                <!-- **** BREED -->
+                <label class="m-2" for="breed">Breed:</label>
+                <select [(ngModel)]="bunny.breed" id="breed" name="breed">
+                    <option value="">Choose</option>
+                    <option value="holland">Holland Lop</option>
+                    <option value="dutch">Dutch</option>
+                    <option value="rex">Rex</option>
+                    <option value="mix">Mix</option>
+                </select>
+            </div>
 
-            <label class="m-2" for="breed">Breed:</label>
-            <select [(ngModel)]="bunny.breed"  id="breed" name="breed">
-                <option value="">Choose</option>
-                <option value="holland">Holland Lop</option>
-                <option value="dutch">Dutch</option>
-                <option value="rex">Rex</option>
-                <option value="mix">Mix</option>
-            </select>
-        </div>
-        <div>
-            <label class="m-2" for="weight">Weight (lbs):</label>
-            <input [(ngModel)]="bunny.weight" class="m-2" type="number" id="weight" name="weight">
-        </div>
-        <button class="btn btn-info m-2" type="submit" (click)="onAddBunny()">Add Bunny</button>
-    </form>
-    <p class="m-2">{{bunnyAdditiondStatus}} </p>
+            <!-- **** WEIGHT LBS -->
+            <div>
+                <label class="m-2" for="weight">Weight (lbs):</label>
+                <input [(ngModel)]="bunny.weight" class="m-2" type="number" id="weight" name="weight">
+            </div>
+            <button class="btn btn-info m-2" type="submit" (click)="onAddBunny()">Add Bunny</button>
+        </form>
+        <p class="m-2">{{bunnyAdditiondStatus}} </p>
+    </div>
 </div>
-
-
