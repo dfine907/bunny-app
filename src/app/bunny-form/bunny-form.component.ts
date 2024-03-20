@@ -1,36 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Bunny } from '../bunny';
-import { BunnyService } from '../bunny.service';
 
 @Component({
   selector: 'app-bunny-form',
   templateUrl: './bunny-form.component.html',
   styleUrls: ['./bunny-form.component.css'],
 })
-export class BunnyFormComponent {
-  
-  // I think need to invoke the class w/ a created constructor for each new instance
-  constructor(private bunnyService: BunnyService) { 
-  }
+export class BunnyFormComponent implements OnInit {
+  bunnies: Bunny[] = [];
+  bunnyForm: FormGroup;
 
-  bunny: Bunny = {
-    id: 1,
-    name: '',
-    gender: '',
-    breed: '',
-    age: 0,
-    weight: 0,
-  };
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initForm();
+  }
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
   onAddBunny() {
+    // if(this.bunnyForm.invalid){
+    //   return
+    // }
+
     this.bunnyAdditiondStatus = 'Bunny was added!';
-    this.bunnyService.addBunny(this.bunny);
+    console.log(this.bunnyForm);
+
+    this.bunnies.push({ ...this.bunnyForm.value });
+    this.bunnyForm.reset();
   }
 
   onSubmit() {
     console.log('Submitted');
-    console.log(typeof this.bunny);
+  }
+
+  //private function to init data
+  private initForm() {
+    this.bunnyForm = this.fb.group({
+      name: this.fb.control('', Validators.required),
+      gender: this.fb.control(''),
+      breed: this.fb.control(''),
+      age: this.fb.control(0),
+      weight: this.fb.control(0),
+    });
   }
 }

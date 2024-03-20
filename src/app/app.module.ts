@@ -13,7 +13,6 @@ import { BunnyFormComponent } from './bunny-form/bunny-form.component';
 
 import { ListedCardsComponent } from './listed-cards/listed-cards.component';
 import { BunnyListComponent } from './bunny-list/bunny-list.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +20,7 @@ import { BunnyListComponent } from './bunny-list/bunny-list.component';
     MoreInfoComponent,
     BunnyFormComponent,
     ListedCardsComponent,
-    BunnyListComponent
+    BunnyListComponent,
   ],
   imports: [
     BrowserModule,

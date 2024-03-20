@@ -1,5 +1,5 @@
 export interface Bunny {
-    id: number;
+    id?: number;
     name: string;
     gender: string;
     breed: string;
