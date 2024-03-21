@@ -1,18 +1,18 @@
-
-<h1 class="display-3">The Bunny App 🐰</h1>
+<h2> Fill out information for your bunny: </h2>
 
 <div class="container">
     <div class="border border-danger m-3 rounded-2">
         <h3 class="text-danger">Bunny Form</h3>
 
-        <form [formGroup]= "bunnyForm">
+        <form [formGroup]="bunnyForm" (submit)="onSubmitForm()">
+            <!-- **** NAME -->
+
             <div class="form-group p-1">
                 <label class="m-2" for="name">Name:</label>
                 <input formControlName="name" type="text" id="name" name="name">
-                <div *ngIf="bunnyForm.get('name').invalid">Name required</div>
+                <div class="text-danger" *ngIf="bunnyForm.get('name').invalid">Name required</div>
             </div>
-            
-            <!-- **** NAME -->
+
             <div>
                 <label class="m-2" for="name">Age:</label>
                 <input formControlName="age" type="number" id="age" name="age" required>
@@ -27,7 +27,7 @@
                 </select>
                 <!-- **** BREED -->
                 <label class="m-2" for="breed">Breed:</label>
-                <select formControlName="breed"  id="breed" name="breed">
+                <select formControlName="breed" id="breed" name="breed">
                     <option value="">Choose</option>
                     <option value="holland">Holland Lop</option>
                     <option value="dutch">Dutch</option>
@@ -48,4 +48,3 @@
 </div>
 
 <app-bunny-list [bunnies]="bunnies"></app-bunny-list>
-

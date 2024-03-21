@@ -8,8 +8,10 @@ import { Bunny } from '../bunny';
   styleUrls: ['./bunny-form.component.css'],
 })
 export class BunnyFormComponent implements OnInit {
+  
   bunnies: Bunny[] = [];
   bunnyForm: FormGroup;
+  isformSubmitted: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -20,14 +22,15 @@ export class BunnyFormComponent implements OnInit {
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
   onAddBunny() {
+    
     this.bunnyAdditiondStatus = 'Bunny was added!';
     console.log(this.bunnyForm);
-
+    this.isformSubmitted = true
     this.bunnies.push({ ...this.bunnyForm.value });
     this.bunnyForm.reset();
   }
 
-  onSubmit() {
+  onSubmitForm() {
     console.log('Submitted');
   }
 

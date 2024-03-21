@@ -4,13 +4,12 @@ import { BunnyFormComponent } from './bunny-form/bunny-form.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
 
 const routes: Routes = [
-  {path: 'moreinfo', component: MoreInfoComponent},
-  { path: 'bunnyform', component: BunnyFormComponent}
-  
+  { path: 'bunnyform', component: BunnyFormComponent },
+  { path: 'moreinfo', component: MoreInfoComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
