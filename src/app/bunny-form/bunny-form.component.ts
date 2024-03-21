@@ -20,10 +20,6 @@ export class BunnyFormComponent implements OnInit {
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
   onAddBunny() {
-    // if(this.bunnyForm.invalid){
-    //   return
-    // }
-
     this.bunnyAdditiondStatus = 'Bunny was added!';
     console.log(this.bunnyForm);
 

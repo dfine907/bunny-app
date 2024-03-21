@@ -3,5 +3,9 @@
 
 body {
     margin-left: 15px;
-    background-color: rgb(231, 236, 252);
+    background-image: url('./assets/bunny_hero.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    height: 100vh;
 }
