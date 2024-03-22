@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
   res.send('Hello From the Backend!')
 })
 
+app.get('/moreinfo', (req, res) => {
+  res.send()
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

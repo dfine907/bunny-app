@@ -11,7 +11,7 @@ export class BunnyFormComponent implements OnInit {
   
   bunnies: Bunny[] = [];
   bunnyForm: FormGroup;
-  isformSubmitted: boolean = false;
+  // isformSubmitted: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -25,9 +25,10 @@ export class BunnyFormComponent implements OnInit {
     
     this.bunnyAdditiondStatus = 'Bunny was added!';
     console.log(this.bunnyForm);
-    this.isformSubmitted = true
+    // this.isformSubmitted = true
     this.bunnies.push({ ...this.bunnyForm.value });
     this.bunnyForm.reset();
+    //logic check isthis.bunny form valid else mark all touched.
   }
 
   onSubmitForm() {

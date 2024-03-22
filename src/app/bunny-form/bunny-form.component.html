@@ -2,32 +2,36 @@
 
 <div class="container">
     <div class="border border-danger m-3 rounded-2">
-        <h3 class="text-danger">Bunny Form</h3>
+        <h3>Bunny Form</h3>
 
-        <form [formGroup]="bunnyForm" (submit)="onSubmitForm()">
+        <form #ngForm="ngForm" [formGroup]="bunnyForm" (submit)="onSubmitForm()">
+
             <!-- **** NAME -->
-
             <div class="form-group p-1">
                 <label class="m-2" for="name">Name:</label>
-                <input formControlName="name" type="text" id="name" name="name">
-                <div class="text-danger" *ngIf="bunnyForm.get('name').invalid">Name required</div>
+                <input class="text-bg-success" formControlName="name" type="text" id="name" name="name">
+                <!-- <div class="text-danger" *ngIf= "bunnyForm.get('name').invalid  && bunnyForm.get('name').touched "  >Name required</div> -->
+                <!-- <div class="text-danger" *ngIf="bunnyForm.get('input-name')?.touched">Name required</div> -->
+                <div class="text-danger" *ngIf="bunnyForm.get('name').invalid && ngForm.submitted">Name required</div>
             </div>
 
             <div>
                 <label class="m-2" for="name">Age:</label>
-                <input formControlName="age" type="number" id="age" name="age" required>
+                <input class="text-bg-success" formControlName="age" type="number" id="age" name="age" required>
             </div>
+
             <!-- **** GENDER -->
             <div class="form-group">
                 <label class="m-2" for="gender">Gender:</label>
-                <select class="p-1" formControlName="gender" id="gender" name="gender">
+                <select class="p-1 text-bg-success" formControlName="gender" id="gender" name="gender">
                     <option value="">Choose</option>
                     <option value="male">Boy Buns</option>
                     <option value="female">Girl Buns</option>
                 </select>
+                
                 <!-- **** BREED -->
                 <label class="m-2" for="breed">Breed:</label>
-                <select formControlName="breed" id="breed" name="breed">
+                <select class="p-1 text-bg-success" formControlName="breed" id="breed" name="breed">
                     <option value="">Choose</option>
                     <option value="holland">Holland Lop</option>
                     <option value="dutch">Dutch</option>
@@ -39,7 +43,7 @@
             <!-- **** WEIGHT LBS -->
             <div>
                 <label class="m-2" for="weight">Weight (lbs):</label>
-                <input formControlName="weight" class="m-2" type="number" id="weight" name="weight">
+                <input formControlName="weight" class=" text-bg-success" type="number" id="weight" name="weight">
             </div>
             <button class="btn btn-info m-2" (click)="onAddBunny()">Add Bunny</button>
         </form>
