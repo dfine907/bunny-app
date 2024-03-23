@@ -15,20 +15,14 @@ export class BunnyService {
   constructor(private http: HttpClient) {}
 
   addBunny(bunny: BunnySubmission): Observable<Bunny> {
-    //in practice id gets generated on backend
-    let id: number;
-    let latestBunnies: Bunny[];
     return of(bunny).pipe(
-      withLatestFrom(this.bunnies),
-      map(([bunny, bunnies]) => {
-        id = bunnies.length ? bunnies.at(-1).id + 1 : 1;
-        latestBunnies = bunnies;
-        return { ...bunny, id } as Bunny;
-      }),
-      exhaustMap((bunny: Bunny) =>
+      exhaustMap((bunny: BunnySubmission) =>
         this.http.post('/api/bunnies', bunny).pipe(
-          tap(() => this.bunnies.next([...latestBunnies, { ...bunny, id }])),
-          map((bunny: Bunny) => bunny)
+          withLatestFrom(this.bunnies),
+          tap(([bunny, bunnies]: [Bunny, Bunny[]]) =>
+            this.bunnies.next([...bunnies, bunny])
+          ),
+          map(([bunny, _]) => bunny)
         )
       )
     );
