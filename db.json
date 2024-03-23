@@ -1,7 +1,7 @@
 {
   "bunnies": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Roger",
       "gender": "M",
       "weight": 3,
@@ -9,7 +9,7 @@
       "age": 7
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Bugs",
       "gender": "F",
       "weight": 2,
@@ -17,7 +17,7 @@
       "age": 6
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Paddington",
       "gender": "M",
       "weight": 5,
@@ -25,7 +25,7 @@
       "age": 5
     },
     {
-      "id": "31",
+      "id": 4,
       "name": "test",
       "gender": "male",
       "breed": "holland",
