@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Bunny } from '../bunny';
 
 @Component({
   selector: 'app-listed-cards',

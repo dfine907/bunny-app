@@ -13,6 +13,8 @@ import { BunnyFormComponent } from './bunny-form/bunny-form.component';
 
 import { ListedCardsComponent } from './listed-cards/listed-cards.component';
 import { BunnyListComponent } from './bunny-list/bunny-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BunnyDetailComponent } from './bunny-list/bunny-detail/bunny-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,13 @@ import { BunnyListComponent } from './bunny-list/bunny-list.component';
     MoreInfoComponent,
     BunnyFormComponent,
     ListedCardsComponent,
-    BunnyListComponent
+    BunnyListComponent,
+    BunnyDetailComponent
   ],
   imports: [
     BrowserModule,
-
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
   ],

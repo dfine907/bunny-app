@@ -1,9 +1,6 @@
 <div class="container">
-  <div *ngFor="let bunny of bunnies$ | async" class="border border-success m-3 rounded-2 p-1">
-    <h3 class="text-primary">{{ bunny.name }}</h3>
-    <p>Age: {{ bunny.age }}</p>
-    <p>Gender: {{ bunny.gender }}</p>
-    <p>Breed: {{ bunny.breed }}</p>
-    <p>Weight (lbs): {{ bunny.weight }}</p>
+  <app-bunny-form (newBunnyEvent)="addBunny"></app-bunny-form>
+  <div *ngFor="let bunny of (bunnies$ | async)" class="border border-success m-3 rounded-2 p-1">
+    <app-bunny-detail [bunny]="bunny"></app-bunny-detail>
   </div>
 </div>

@@ -2,27 +2,27 @@
     <div class="border border-danger m-3 rounded-2">
         <h3 class="text-danger">Bunny Form</h3>
 
-        <form (ngSubmit)="onSubmit()">
+        <form formGroupName="bunnyForm" (ngSubmit)="onSubmit()">
             <div class="form-group p-1">
                 <label class="m-2" for="name">Name:</label>
-                <input [(ngModel)]="bunny.name" type="text" id="name" name="name" required>
+                <input formControlName="name" type="text" id="name">
             </div>
             <!-- **** NAME -->
             <div>
                 <label class="m-2" for="name">Age:</label>
-                <input [(ngModel)]="bunny.age" type="number" id="age" name="age" required>
+                <input formControlName="age" type="number" id="age">
             </div>
             <!-- **** GENDER -->
             <div class="form-group">
                 <label class="m-2" for="gender">Gender:</label>
-                <select class="p-1" [(ngModel)]="bunny.gender" id="gender" name="gender">
+                <select class="p-1" formControlName="gender" id="gender" name="gender">
                     <option value="">Choose</option>
                     <option value="male">Boy Buns</option>
                     <option value="female">Girl Buns</option>
                 </select>
                 <!-- **** BREED -->
                 <label class="m-2" for="breed">Breed:</label>
-                <select [(ngModel)]="bunny.breed" id="breed" name="breed">
+                <select formControlName="breed" id="breed" name="breed">
                     <option value="">Choose</option>
                     <option value="holland">Holland Lop</option>
                     <option value="dutch">Dutch</option>
@@ -34,9 +34,9 @@
             <!-- **** WEIGHT LBS -->
             <div>
                 <label class="m-2" for="weight">Weight (lbs):</label>
-                <input [(ngModel)]="bunny.weight" class="m-2" type="number" id="weight" name="weight">
+                <input formControlName="weight" class="m-2" type="number" id="weight">
             </div>
-            <button class="btn btn-info m-2" type="submit" (click)="onAddBunny()">Add Bunny</button>
+            <button class="btn btn-info m-2" [disabled]="bunnyForm.invalid" type="submit">Add Bunny</button>
         </form>
         <p class="m-2">{{bunnyAdditiondStatus}} </p>
     </div>
