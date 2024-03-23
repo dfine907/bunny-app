@@ -1,6 +1,10 @@
 <div class="container">
-  <app-bunny-form (newBunnyEvent)="addBunny"></app-bunny-form>
+  <app-bunny-form (newBunnyEvent)="addBunny($event)"></app-bunny-form>
   <div *ngFor="let bunny of (bunnies$ | async)" class="border border-success m-3 rounded-2 p-1">
     <app-bunny-detail [bunny]="bunny"></app-bunny-detail>
+
   </div>
+  <pre>
+        {{(bunnies$ | async).length||"NONE"}}
+      </pre>
 </div>

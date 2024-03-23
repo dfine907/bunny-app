@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
@@ -10,19 +10,27 @@ import { BunnyService } from '../bunny.service';
   selector: 'app-bunny-list',
   templateUrl: './bunny-list.component.html',
   styleUrls: ['./bunny-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BunnyListComponent {
-
-  bunnies$:Observable<Bunny[]>=this.bunnyService.getBunnies();
+export class BunnyListComponent implements OnInit {
+  bunnies$: Observable<Bunny[]> = this.bunnyService.bunnies$;
 
   constructor(private bunnyService: BunnyService) {}
-
-  
-
-  addBunny(bunny:BunnySubmission){
-    this.bunnyService.addBunny(bunny).pipe(
-    tap(()=>alert("Added Bunny Successfully! You can come up with using a toast service to notify user of successfull submission")),
-    take(1)).subscribe();
+  ngOnInit(): void {
+    this.bunnyService.getBunnies().pipe(take(1)).subscribe();
   }
 
+  addBunny(bunny: BunnySubmission) {
+    this.bunnyService
+      .addBunny(bunny)
+      .pipe(
+        take(1),
+        tap(() =>
+          alert(
+            'Added Bunny Successfully! You can come up with using a toast service to notify user of successfull submission'
+          )
+        )
+      )
+      .subscribe();
+  }
 }

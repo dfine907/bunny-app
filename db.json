@@ -1,7 +1,36 @@
 {
-    "bunnies":[
-        {"id":"1","name":"Roger","gender":"M","weight":3,"breed":"Alaskan","age":7},
-        {"id":"2","name":"Bugs","gender":"F","weight":2,"breed":"American","age":6},
-        {"id":"3","name":"Paddington","gender":"M","weight":5,"breed":"American Sable","age":5}
-    ]
+  "bunnies": [
+    {
+      "id": "1",
+      "name": "Roger",
+      "gender": "M",
+      "weight": 3,
+      "breed": "Alaskan",
+      "age": 7
+    },
+    {
+      "id": "2",
+      "name": "Bugs",
+      "gender": "F",
+      "weight": 2,
+      "breed": "American",
+      "age": 6
+    },
+    {
+      "id": "3",
+      "name": "Paddington",
+      "gender": "M",
+      "weight": 5,
+      "breed": "American Sable",
+      "age": 5
+    },
+    {
+      "id": "31",
+      "name": "test",
+      "gender": "male",
+      "breed": "holland",
+      "age": 1,
+      "weight": 3
+    }
+  ]
 }
