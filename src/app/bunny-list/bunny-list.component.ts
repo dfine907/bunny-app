@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Bunny } from '../bunny';
 import { BunnyService } from '../bunny.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bunny-list',
@@ -10,11 +11,11 @@ import { BunnyService } from '../bunny.service';
 })
 export class BunnyListComponent implements OnInit {
 
-  bunnies: Bunny[];
+  bunnies$:Observable<Bunny[]>=this.bunnyService.getBunnies();
 
   constructor(private bunnyService: BunnyService) {}
 
   ngOnInit() {
-    this.bunnies = this.bunnyService.getBunnies();
+  
   }
 }

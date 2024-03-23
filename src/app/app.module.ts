@@ -25,9 +25,10 @@ import { BunnyListComponent } from './bunny-list/bunny-list.component';
   ],
   imports: [
     BrowserModule,
+
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
