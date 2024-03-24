@@ -51,4 +51,60 @@
     </div>
 </div>
 
+<!-- Switching to template driven below -->
+
+<h2>Trial Form:</h2>
+<div class="container">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        
+    <form (ngSubmit)="onSubmitForm()"></form>
+    <div id="user-data">
+          
+        <div class="form-group">
+          <label for="bunnyName">Bunny Name</label>
+          <input 
+          type="text" 
+          id="bunnyName" 
+          class="form-control"
+          ngModel
+          ngNativeValidate
+          name="bunnyName"
+          minlength="2"
+          required
+          placeholder="Add buns name"
+          bunnyName
+          #bunnyName="ngModel">
+          <span class="help-block" *ngIf= "bunnyName.errors?.['minlength']">bunnyName must be at least 2 characters. </span>
+          <span class="help-block" *ngIf="!bunnyName.valid && bunnyName.touched" >Please enter a valid bunnyName</span>
+          
+        </div>
+        <button class="btn btn-default" type="button">Suggest an Username</button>
+
+        <div class="form-group">
+          <label for="email">Mail</label>
+          <input 
+          type="email" 
+          id="email" 
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+          placeholder="Your email"
+          #email="ngModel">
+          <span class="help-block" *ngIf="!email.valid && email.touched" >Please enter a valid email</span>
+        </div>
+      </div>
+    
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
 <app-bunny-list [bunnies]="bunnies"></app-bunny-list>
