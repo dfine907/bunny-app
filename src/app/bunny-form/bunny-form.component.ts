@@ -28,7 +28,7 @@ export class BunnyFormComponent implements OnInit {
     // this.isformSubmitted = true
     this.bunnies.push({ ...this.bunnyForm.value });
     this.bunnyForm.reset();
-    //logic check isthis.bunny form valid else mark all touched.
+    //logic check is this.bunny form valid else mark all touched.
   }
 
   onSubmitForm() {
