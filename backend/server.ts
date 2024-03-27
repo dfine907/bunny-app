@@ -2,14 +2,12 @@ import express from 'express';
 
 const app = express();
 const port = 3000;
-
 const cors = require('cors')
 
- 
 app.use(cors())
 
-// Middleware - add middle which are just functions like authentification
-// ROUTES using app.  Responding to client/user
+app.use(express.json());
+
 
 app.use('/posts', (req, res, next)=> {
   const posts = [
@@ -19,32 +17,24 @@ app.use('/posts', (req, res, next)=> {
     gender: "girl",
     breed: 'Rex',
     age: 4,
-    weight: 6,
-    content: "from the server"
-    },
-    {
-      id: '23',
-      name: 'Franciso',
-      gender: "Boy",
-      breed: 'Rex',
-      age: 2,
-      weight: 3,
-      content: "from the server!!"
-      }
+    content: "This is from the server"
+    }
   ]
   res.status(200).json({
     message: "Posts successful",
     posts: posts
   })
-  //  next() middleware is not needed - we end here
+  //  next() middleware is not needed - end here
 })
+
 app.get('/', (req, res) => {
   res.send('👋🏽 Hello from the backend!');
 });
 
-app.post('/bunnyform', (req, res) => {
+app.get('/bunnyform', (req, res) => {
   const formData = req.body;
   console.log(formData);
+  
   res.json({ message: 'BunData received successfully' });
 });
 

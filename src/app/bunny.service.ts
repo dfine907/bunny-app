@@ -14,6 +14,8 @@ export class BunnyService {
   addBunny(bunny: Bunny) {
     const newBunny = { ...bunny };
     this.bunnies.push(newBunny);
+    console.log(newBunny);
+    
     return newBunny;
   }
 
@@ -22,17 +24,18 @@ export class BunnyService {
     .get<any>('http://localhost:3000/posts') 
     .subscribe((response) => {
       const postData = response.posts;
+      console.log(postData)
 
-      // Map the postData to your Bunny objects
-      this.bunnies = postData.map((data) => {
+      // Map the postData to Bunny objects
+      this.bunnies = postData.map((element) => {
         return {
-          id: data.id,
-          name: data.name,
-          gender: data.gender,
-          breed: data.breed,
-          age: data.age,
-          weight: data.weight,
-          content: data.content,
+          id: element.id,
+          name: element.name,
+          gender: element.gender,
+          breed: element.breed,
+          age: element.age,
+          weight: element.weight,
+          content: element.content,
         } as Bunny; 
       });
     });
