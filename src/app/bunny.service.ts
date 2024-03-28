@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { map, tap } from 'rxjs/operators'
 import { Bunny } from './bunny';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -19,25 +21,13 @@ export class BunnyService {
     return newBunny;
   }
 
-  getBunnies() {
-    this.http
-    .get<any>('http://localhost:3000/posts') 
-    .subscribe((response) => {
-      const postData = response.posts;
-      console.log(postData)
-
-      // Map the postData to Bunny objects
-      this.bunnies = postData.map((element) => {
-        return {
-          id: element.id,
-          name: element.name,
-          gender: element.gender,
-          breed: element.breed,
-          age: element.age,
-          weight: element.weight,
-          content: element.content,
-        } as Bunny; 
-      });
-    });
+  // getBunnies() returns an Observable of an array of Bunny objects. 
+  getBunnies(): Observable<Bunny[]> {
+    return this.http.get<Bunny[]>('http://localhost:3000/posts').pipe(
+      tap((data)=> console.log(data)
+      ),
+      map(res => res['posts']    
+      )
+    )
   }
 }

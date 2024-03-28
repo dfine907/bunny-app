@@ -13,11 +13,12 @@ app.use('/posts', (req, res, next)=> {
   const posts = [
     {
     id: '22',
-    name: 'Lola',
-    gender: "girl",
+    name: 'Lola From the Server',
+    gender: "Girl",
     breed: 'Rex',
+    weight: 3,
     age: 4,
-    content: "This is from the server"
+     
     }
   ]
   res.status(200).json({

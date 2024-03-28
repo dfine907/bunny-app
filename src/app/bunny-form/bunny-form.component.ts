@@ -32,7 +32,7 @@ export class BunnyFormComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log('Submitted');
+    console.log(this.bunnies, 'Submitted');
   }
 
   //private function to init data
