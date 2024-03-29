@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BunnyService {
-  private bunnies: Bunny[] = [];
+  public bunnies: Bunny[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   addBunny(bunny: Bunny) {
     const newBunny = { ...bunny };

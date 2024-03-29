@@ -8,7 +8,7 @@ import  { Observable } from 'rxjs'
 
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
    // Method to save bunny form data to the backend
    saveBunnyFormData(formData: any): Observable<any> {

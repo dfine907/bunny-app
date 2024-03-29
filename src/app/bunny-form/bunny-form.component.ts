@@ -13,7 +13,7 @@ export class BunnyFormComponent implements OnInit {
   bunnyForm: FormGroup;
   // isformSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(public fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
