@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Bunny } from '../bunny';
+import { BunnyService } from '../bunny.service';
 
 @Component({
   selector: 'app-bunny-form',
@@ -8,33 +9,37 @@ import { Bunny } from '../bunny';
   styleUrls: ['./bunny-form.component.css'],
 })
 export class BunnyFormComponent implements OnInit {
-  
   bunnies: Bunny[] = [];
   bunnyForm: FormGroup;
   // isformSubmitted: boolean = false;
 
-  constructor(public fb: FormBuilder) {}
+  constructor(public fb: FormBuilder, private bunnyService: BunnyService) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.initBunnies();
   }
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
   onAddBunny() {
-    
-    this.bunnyAdditiondStatus = 'Bunny was added!';
-    console.log(this.bunnyForm);
-    // this.isformSubmitted = true
-    this.bunnies.push({ ...this.bunnyForm.value });
-    this.bunnyForm.reset();
-    //logic check is this.bunny form valid else mark all touched.
+    this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
+      console.log(res);
+      //gives what tap would ^
+      this.initBunnies();
+      this.bunnyForm.reset();
+    });
   }
 
   onSubmitForm() {
     console.log(this.bunnies, 'Submitted');
   }
 
+  private initBunnies() {
+    this.bunnyService.getBunnies().subscribe((res) => {
+      this.bunnies = res;
+    });
+  }
   //private function to init data
   private initForm() {
     this.bunnyForm = this.fb.group({
