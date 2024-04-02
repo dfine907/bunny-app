@@ -20,7 +20,7 @@ export class BunnyService {
       weight: bunny.weight,
       age: bunny.age,
     };
-    //this is an observable
+    //this is the observable:
     return this.http.post('http://localhost:3000/bunny', savedData)
   }
 

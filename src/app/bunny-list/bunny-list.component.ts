@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Bunny } from '../bunny';
 
@@ -9,7 +9,4 @@ import { Bunny } from '../bunny';
 })
 export class BunnyListComponent {
   @Input() bunnies: Bunny[];
-  
-
-  
 }

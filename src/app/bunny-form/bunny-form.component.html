@@ -1,14 +1,14 @@
 <h3> Fill out information for your bunny: </h3>
 
 <div class="container">
-    <div class="border border-danger m-3 rounded-2">
-        <h2>Bunny Form</h2>
+    <div class="border border-success m-3 rounded-2">
+        <h2 class="m-1">Bunny Form</h2>
 
         <form #ngForm="ngForm" [formGroup]="bunnyForm" (submit)="onSubmitForm()">
 
             <!-- **** NAME -->
             <div class="form-group p-1">
-                <label class="m-2" for="name">Name:</label>
+                <label class="m-1" for="name">Name:</label>
                 <input 
                 class="text-bg-success" 
                 formControlName="name" 
@@ -58,11 +58,33 @@
             <!--  ****** BUTTON -->
             <button class="btn btn-info m-2" (click)="onAddBunny()">Add Bunny</button>
         </form>
-        <p class="m-2">{{bunnyAdditiondStatus}} </p>
+        
     </div>
 </div>
 
 <app-bunny-list [bunnies]="bunnies"></app-bunny-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Switching to template driven below -->
 <!-- 

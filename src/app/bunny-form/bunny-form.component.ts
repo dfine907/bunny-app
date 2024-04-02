@@ -11,9 +11,14 @@ import { BunnyService } from '../bunny.service';
 export class BunnyFormComponent implements OnInit {
   bunnies: Bunny[] = [];
   bunnyForm: FormGroup;
-  // isformSubmitted: boolean = false;
 
   constructor(public fb: FormBuilder, private bunnyService: BunnyService) {}
+
+  private initBunnies() {
+    this.bunnyService.getBunnies().subscribe((res) => {
+      this.bunnies = res;
+    });
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -25,7 +30,6 @@ export class BunnyFormComponent implements OnInit {
   onAddBunny() {
     this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
       console.log(res);
-      //gives what tap would ^
       this.initBunnies();
       this.bunnyForm.reset();
     });
@@ -35,11 +39,6 @@ export class BunnyFormComponent implements OnInit {
     console.log(this.bunnies, 'Submitted');
   }
 
-  private initBunnies() {
-    this.bunnyService.getBunnies().subscribe((res) => {
-      this.bunnies = res;
-    });
-  }
   //private function to init data
   private initForm() {
     this.bunnyForm = this.fb.group({
