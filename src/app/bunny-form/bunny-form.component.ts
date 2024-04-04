@@ -39,7 +39,6 @@ export class BunnyFormComponent implements OnInit {
     console.log(this.bunnies, 'Submitted');
   }
 
-  //private function to init data
   private initForm() {
     this.bunnyForm = this.fb.group({
       name: this.fb.control('', Validators.required),
