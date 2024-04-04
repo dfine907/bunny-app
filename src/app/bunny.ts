@@ -4,5 +4,5 @@ export interface Bunny {
     gender: string;
     breed: string;
     age: number;
-    weight: number,
+    dob: Date,
   }

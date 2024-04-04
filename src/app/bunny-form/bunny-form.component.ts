@@ -45,7 +45,7 @@ export class BunnyFormComponent implements OnInit {
       gender: this.fb.control(''),
       breed: this.fb.control(''),
       age: this.fb.control(0),
-      weight: this.fb.control(0),
+      dob: this.fb.control(0),
     });
   }
 }

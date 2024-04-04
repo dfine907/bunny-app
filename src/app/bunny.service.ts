@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Bunny } from './bunny';
 import { Observable } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class BunnyService {
       name: bunny.name,
       gender: bunny.gender,
       breed: bunny.breed,
-      weight: bunny.weight,
+      dob: bunny.dob,
       age: bunny.age,
     };
     //this is the observable:
