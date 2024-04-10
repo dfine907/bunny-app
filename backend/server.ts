@@ -9,19 +9,11 @@ app.use(cors());
 app.use(express.json());
 
 const bunnies: any[] = [
-  // {
-  //   id: '22',
-  //   name: 'Lola From the Server',
-  //   gender: "Girl",
-  //   breed: 'Rex',
-  //   weight: 3,
-  //   age: 4,
-  //   }
 ];
 
 app.get('/bunnies', (req, res, next) => {
   res.status(200).json(bunnies);
-  //  next() middleware is not needed - end here
+  
 });
 
 app.get('/', (req, res) => {
