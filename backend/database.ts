@@ -43,4 +43,4 @@ getBunnyData()
         console.error('No got buns. Error:', error);
     });
 
-export default pool;
+export default { pool, getBunnyData }

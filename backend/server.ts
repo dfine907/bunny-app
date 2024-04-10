@@ -6,7 +6,6 @@ const port = 3000;
 const cors = require('cors');
 
 app.use(cors());
-
 app.use(express.json());
 
 const bunnies: any[] = [
@@ -18,10 +17,20 @@ const bunnies: any[] = [
 // });
 
 //https://deadsimplechat.com/blog/rest-api-with-postgresql-and-node-js/
-app.get('/bunnies', async (req, res, next) => {
+// app.get('/bunnies', async (req, res, next) => {
+//   try {
+//     const result = await pool.query('SELECT * FROM bunny');
+//     res.status(200).json(result.rows);
+//   } catch (error) {
+//     console.error('Error executing query:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+app.get('/bunnies', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM bunny');
-    res.status(200).json(result.rows);
+    const bunnies = await pool.getBunnyData(); // Using the database function directly
+    res.status(200).json(bunnies);
   } catch (error) {
     console.error('Error executing query:', error);
     res.status(500).json({ error: 'Internal Server Error' });
