@@ -1,4 +1,5 @@
 import express from 'express';
+import pool from './database';
 
 const app = express();
 const port = 3000;
@@ -11,9 +12,20 @@ app.use(express.json());
 const bunnies: any[] = [
 ];
 
-app.get('/bunnies', (req, res, next) => {
-  res.status(200).json(bunnies);
-  
+//Old code:
+// app.get('/bunnies', (req, res, next) => {
+//   res.status(200).json(bunnies);
+// });
+
+//https://deadsimplechat.com/blog/rest-api-with-postgresql-and-node-js/
+app.get('/bunnies', async (req, res, next) => {
+  try {
+    const result = await pool.query('SELECT * FROM bunny');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error executing query:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.get('/', (req, res) => {
