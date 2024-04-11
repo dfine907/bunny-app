@@ -8,8 +8,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const bunnies: any[] = [
-];
+const bunnies: any[] = [];
 
 //Old code:
 // app.get('/bunnies', (req, res, next) => {
@@ -17,19 +16,10 @@ const bunnies: any[] = [
 // });
 
 //https://deadsimplechat.com/blog/rest-api-with-postgresql-and-node-js/
-// app.get('/bunnies', async (req, res, next) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM bunny');
-//     res.status(200).json(result.rows);
-//   } catch (error) {
-//     console.error('Error executing query:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
 
 app.get('/bunnies', async (req, res) => {
   try {
-    const bunnies = await pool.getBunnyData(); // Using the database function directly
+    const bunnies = await pool.getBunnyData();
     res.status(200).json(bunnies);
   } catch (error) {
     console.error('Error executing query:', error);
@@ -52,10 +42,6 @@ app.post('/bunny', (req, res) => {
   bunnies.push(req.body);
   res.send(req.body);
 });
-
-// app.get('/moreinfo', (req, res) => {
-//   res.json( {message: 'Got More Bun Info data'})
-// })
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);

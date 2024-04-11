@@ -15,11 +15,11 @@ const pool: Pool = new Pool(poolConfig);
 
 //this may change
 interface BunnyRow {
-    id: number;
-    name: string;
-    breed: number;
-    gender: string;
-    dob: string
+  id: number;
+  name: string;
+  breed: number;
+  gender: string;
+  dob: string;
 }
 
 async function getBunnyData(): Promise<BunnyRow[]> {
@@ -29,18 +29,17 @@ async function getBunnyData(): Promise<BunnyRow[]> {
 
     return result.rows;
   } catch (error) {
-    
     console.error('Error executing query:', error);
-    throw error; 
+    throw error;
   }
 }
 
 getBunnyData()
-    .then((data: BunnyRow[]) => {
-        console.log('WE GOT BUNS:', data);
-    })
-    .catch((error) => {
-        console.error('No got buns. Error:', error);
-    });
+  .then((data: BunnyRow[]) => {
+    console.log('WE GOT BUNS:', data);
+  })
+  .catch((error) => {
+    console.error('No got buns. Error:', error);
+  });
 
-export default { pool, getBunnyData }
+export default { pool, getBunnyData };
