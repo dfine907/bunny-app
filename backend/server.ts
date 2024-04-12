@@ -10,12 +10,11 @@ app.use(express.json());
 
 const bunnies: any[] = [];
 
-//Old code:
-// app.get('/bunnies', (req, res, next) => {
-//   res.status(200).json(bunnies);
-// });
-
 //https://deadsimplechat.com/blog/rest-api-with-postgresql-and-node-js/
+
+app.get('/', (req, res) => {
+  res.send('👋🏽 Home page for bunny app!');
+});
 
 app.get('/bunnies', async (req, res) => {
   try {
@@ -27,10 +26,6 @@ app.get('/bunnies', async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('👋🏽 Home page for bunny app!');
-});
-
 app.get('/bunnyform', (req, res) => {
   const formData = req.body;
   console.log(formData);
@@ -38,9 +33,10 @@ app.get('/bunnyform', (req, res) => {
   res.json({ message: 'BunData received successfully' });
 });
 
-app.post('/bunny', (req, res) => {
-  bunnies.push(req.body);
-  res.send(req.body);
+app.post('/bunny', async (req, res) => {
+  // bunnies.push(req.body);
+  const data = await pool.createBunnyData(req.body);
+  res.send(data);
 });
 
 app.listen(port, () => {

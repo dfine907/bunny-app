@@ -35,18 +35,18 @@
                 <label class="m-2" for="gender">Gender:</label>
                 <select class="p-1 text-bg-success" formControlName="gender" id="gender" name="gender">
                     <option value="">Choose</option>
-                    <option value="Male">Boy Buns</option>
-                    <option value="Female">Girl Buns</option>
+                    <option value="M">Boy Buns</option>
+                    <option value="F">Girl Buns</option>
                 </select>
                 
                 <!-- **** BREED -->
                 <label class="m-2" for="breed">Breed:</label>
                 <select class="p-1 text-bg-success" formControlName="breed" id="breed" name="breed">
                     <option value="">Choose</option>
-                    <option value="Holland Lop">Holland Lop</option>
-                    <option value="Dutch">Dutch</option>
-                    <option value="Rex">Rex</option>
-                    <option value="Mix">Mix</option>
+                    <option value="1">Holland Lop</option>
+                    <option value="2">Dutch</option>
+                    <option value="3">Rex</option>
+                    <option value="4">Mix</option>
                 </select>
             </div>
 
@@ -64,81 +64,3 @@
 
 <app-bunny-list [bunnies]="bunnies"></app-bunny-list>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Switching to template driven below -->
-<!-- 
-<h2>Trial Form:</h2>
-<div class="container">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-        
-    <form (ngSubmit)="onSubmitForm()"></form>
-    <div id="user-data">
-          
-        <div class="form-group">
-          <label for="bunnyName">Bunny Name</label>
-          <input 
-          type="text" 
-          id="bunnyName" 
-          class="form-control"
-          ngModel
-          ngNativeValidate
-          name="bunnyName"
-          minlength="2"
-          required
-          placeholder="Add buns name"
-          bunnyName
-          #bunnyName="ngModel">
-          <span class="help-block" *ngIf= "bunnyName.errors?.['minlength']">bunnyName must be at least 2 characters. </span>
-          <span class="help-block" *ngIf="!bunnyName.valid && bunnyName.touched" >Please enter a valid bunnyName</span>
-          
-        </div>
-        <button class="btn btn-default" type="button">Suggest an Username</button>
-
-        <div class="form-group">
-          <label for="email">Mail</label>
-          <input 
-          type="email" 
-          id="email" 
-          class="form-control"
-          ngModel
-          name="email"
-          required
-          email
-          placeholder="Your email"
-          #email="ngModel">
-          <span class="help-block" *ngIf="!email.valid && email.touched" >Please enter a valid email</span>
-        </div>
-      </div>
-    
-    </div>
-
-
-
-
-</div>
-
-
-
-
- -->

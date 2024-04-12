@@ -30,4 +30,10 @@ export class BunnyService {
       .get<Bunny[]>('http://localhost:3000/bunnies')
       .pipe(tap((data) => console.log(data)));
   }
+
+  // createBunny()
+
+  /* getBunnies(): Observable<Bunny[]> {
+    return this.http.get<Bunny[]>(this.apiUrl);
+  }*/
 }
