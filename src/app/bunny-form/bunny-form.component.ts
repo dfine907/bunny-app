@@ -36,6 +36,15 @@ export class BunnyFormComponent implements OnInit {
   }
 
   onSubmitForm() {
+    const formatDate = (dateString: string): string => {
+      const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      return new Date(dateString).toLocaleDateString('en-US', options);
+    };
+
     console.log(this.bunnies, 'Submitted');
   }
 
