@@ -18,7 +18,7 @@
                 required>
                 <div class="text-danger" *ngIf="bunnyForm.get('name').invalid && ngForm.submitted">Name required</div>
             </div>
-
+            <!-- **** AGE -->
             <div>
                 <label class="m-2" for="name">Age:</label>
                 <input 
@@ -39,14 +39,19 @@
                     <option value="F">Girl Buns</option>
                 </select>
                 
-                <!-- **** BREED -->
+            <!-- **** BREED -->
                 <label class="m-2" for="breed">Breed:</label>
                 <select class="p-1 text-bg-success" formControlName="breed" id="breed" name="breed">
                     <option value="">Choose</option>
-                    <option value="1">Holland Lop</option>
+                    <option *ngFor="let breed of bunnyService.breeds" value="breed.breed_id">{{breed.breed_name}}</option>
+
+
+
+                    <!-- <option value="1">Lop</option>
                     <option value="2">Dutch</option>
                     <option value="3">Rex</option>
                     <option value="4">Mix</option>
+                    <option value="5">Mix</option> -->
                 </select>
             </div>
 
@@ -62,5 +67,5 @@
     </div>
 </div>
 
-<app-bunny-list [bunnies]="bunnies"></app-bunny-list>
+<app-bunny-list></app-bunny-list>
 

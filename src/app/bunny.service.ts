@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { Bunny } from './bunny';
+import { Bunny, Breed } from './bunny';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,8 +9,18 @@ import { Observable } from 'rxjs';
 })
 export class BunnyService {
   public bunnies: Bunny[] = [];
+  public breeds: Breed[] = [];
 
-  constructor(public http: HttpClient) {}
+  public getBreedById(id: number) {
+    return this.breeds.find(b => b.breed_id == id)?.breed_name
+
+  }
+
+  constructor(public http: HttpClient) {
+    this.getBunnies().subscribe((res) => (this.bunnies = res));
+
+    this.getBreeds().subscribe((res) => (this.breeds = res));
+  }
 
   addBunny(bunny: Bunny) {
     const savedData = {
@@ -20,20 +30,22 @@ export class BunnyService {
       dob: bunny.dob,
       age: bunny.age,
     };
-    //this is the observable:
-    return this.http.post('http://localhost:3000/bunny', savedData)
+
+    return this.http.post('http://localhost:3000/bunny', savedData);
   }
 
-  // getBunnies() returns an Observable of an array of Bunny objects.
   getBunnies(): Observable<Bunny[]> {
     return this.http
       .get<Bunny[]>('http://localhost:3000/bunnies')
       .pipe(tap((data) => console.log(data)));
   }
 
-  // createBunny()
-
-  /* getBunnies(): Observable<Bunny[]> {
-    return this.http.get<Bunny[]>(this.apiUrl);
-  }*/
+  getBreeds(): Observable<Breed[]> {
+    return this.http
+      .get<Breed[]>('http://localhost:3000/breeds')
+      .pipe(tap((data) => console.log(data)));
+  }
 }
+
+//make a function that will delete a button when delete 
+//passes the chosen id into the function associatied with button and deletes

@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-
-import { Bunny } from '../bunny';
+import { Component } from '@angular/core';
+import { BunnyService } from '../bunny.service';
 
 @Component({
   selector: 'app-bunny-list',
@@ -8,5 +7,5 @@ import { Bunny } from '../bunny';
   styleUrls: ['./bunny-list.component.css'],
 })
 export class BunnyListComponent {
-  @Input() bunnies: Bunny[];
+  constructor(public bunnyService: BunnyService) {}
 }

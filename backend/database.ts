@@ -22,19 +22,17 @@ interface BunnyRow {
   dob: string;
 }
 
+interface BreedRow {
+  breed_id: number;
+  breed_name: number;
+  
+}
+
 async function getBunnyData(): Promise<BunnyRow[]> {
   return pool.query('SELECT * FROM bunny').then(res => {
     return res.rows;
   })
-  // try {
-  //   const result = await pool.query('SELECT * FROM bunny');
-
-  //   return result.rows;
-
-  // } catch (error) {
-  //   console.error('Error executing query:', error);
-  //   throw error;
-  // }
+  
 }
 //below was just to try it
 // getBunnyData()
@@ -56,6 +54,11 @@ async function getBunnyData(): Promise<BunnyRow[]> {
     return pool.query(text, values)
   }
 
+  async function getBreedData(): Promise<BreedRow[]> {
+    return pool.query('SELECT * FROM breed').then(res => {
+      return res.rows;
+    })
+  }
   
 
-export default { pool, getBunnyData, createBunnyData };
+export default { pool, getBunnyData, createBunnyData, getBreedData };

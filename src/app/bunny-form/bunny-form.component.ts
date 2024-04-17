@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Bunny } from '../bunny';
+import { Bunny, Breed } from '../bunny';
 import { BunnyService } from '../bunny.service';
 
 @Component({
@@ -9,20 +9,13 @@ import { BunnyService } from '../bunny.service';
   styleUrls: ['./bunny-form.component.css'],
 })
 export class BunnyFormComponent implements OnInit {
-  bunnies: Bunny[] = [];
   bunnyForm: FormGroup;
 
-  constructor(public fb: FormBuilder, private bunnyService: BunnyService) {}
-
-  private initBunnies() {
-    this.bunnyService.getBunnies().subscribe((res) => {
-      this.bunnies = res;
-    });
-  }
+  constructor(public fb: FormBuilder, public bunnyService: BunnyService) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.initBunnies();
+    
   }
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
@@ -30,7 +23,7 @@ export class BunnyFormComponent implements OnInit {
   onAddBunny() {
     this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
       console.log(res);
-      this.initBunnies();
+      
       this.bunnyForm.reset();
     });
   }
@@ -45,7 +38,7 @@ export class BunnyFormComponent implements OnInit {
       return new Date(dateString).toLocaleDateString('en-US', options);
     };
 
-    console.log(this.bunnies, 'Submitted');
+    console.log(this.bunnyService.bunnies, 'Submitted');
   }
 
   private initForm() {

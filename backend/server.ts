@@ -26,6 +26,17 @@ app.get('/bunnies', async (req, res) => {
   }
 });
 
+
+app.get('/breeds', async (req, res) => {
+  try {
+    const breeds = await pool.getBreedData();
+    res.status(200).json(breeds);
+  } catch (error) {
+    console.error('Error executing query:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.get('/bunnyform', (req, res) => {
   const formData = req.body;
   console.log(formData);
@@ -34,7 +45,7 @@ app.get('/bunnyform', (req, res) => {
 });
 
 app.post('/bunny', async (req, res) => {
-  // bunnies.push(req.body);
+  // breeds.push(req.body);
   const data = await pool.createBunnyData(req.body);
   res.send(data);
 });
