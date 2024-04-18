@@ -13,12 +13,10 @@ export class BunnyService {
 
   public getBreedById(id: number) {
     return this.breeds.find(b => b.breed_id == id)?.breed_name
-
   }
 
   constructor(public http: HttpClient) {
     this.getBunnies().subscribe((res) => (this.bunnies = res));
-
     this.getBreeds().subscribe((res) => (this.breeds = res));
   }
 
@@ -31,7 +29,7 @@ export class BunnyService {
       age: bunny.age,
     };
 
-    return this.http.post('http://localhost:3000/bunny', savedData);
+    return this.http.post('http://localhost:3000/bunny', savedData)
   }
 
   getBunnies(): Observable<Bunny[]> {
@@ -45,6 +43,20 @@ export class BunnyService {
       .get<Breed[]>('http://localhost:3000/breeds')
       .pipe(tap((data) => console.log(data)));
   }
+
+  refetchBunnies() {
+    this.getBunnies().subscribe((res) => (this.bunnies = res));
+  }
+  
+  refetchBreeds() {
+    this.getBreeds().subscribe((res) => (this.breeds = res));
+  }
+
+  reLoadBunnyData() {
+    this.refetchBunnies()
+    this.refetchBreeds()
+  }
+
 }
 
 //make a function that will delete a button when delete 
