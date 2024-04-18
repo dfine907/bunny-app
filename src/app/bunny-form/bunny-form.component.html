@@ -40,18 +40,17 @@
                 </select>
                 
             <!-- **** BREED -->
+            
                 <label class="m-2" for="breed">Breed:</label>
-                <select class="p-1 text-bg-success" formControlName="breed" id="breed" name="breed">
+                <select class="p-1 text-bg-success" 
+                formControlName="breed" 
+                id="breed" 
+                name="breed">
                     <option value="">Choose</option>
-                    <option *ngFor="let breed of bunnyService.breeds" value="breed.breed_id">{{breed.breed_name}}</option>
-
-
-
-                    <!-- <option value="1">Lop</option>
-                    <option value="2">Dutch</option>
-                    <option value="3">Rex</option>
-                    <option value="4">Mix</option>
-                    <option value="5">Mix</option> -->
+                    <option 
+                      *ngFor="let breed of bunnyService.breeds" 
+                      [value]= "breed.breed_id">{{breed.breed_name}}
+                    </option>
                 </select>
             </div>
 
