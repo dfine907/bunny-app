@@ -21,8 +21,8 @@ export class BunnyFormComponent implements OnInit {
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
   onAddBunny() {
-    this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
-      console.log(res);
+    this.bunnyService.addBunny(this.bunnyForm.value).subscribe(newBunny => {
+      console.log('New bunny added: ', newBunny);
       
       this.bunnyForm.reset();
     });

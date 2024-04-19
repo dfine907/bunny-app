@@ -20,7 +20,7 @@ export class BunnyService {
     this.getBreeds().subscribe((res) => (this.breeds = res));
   }
 
-  addBunny(bunny: Bunny) {
+  addBunny(bunny: Bunny): Observable<Bunny> {
     const savedData = {
       name: bunny.name,
       gender: bunny.gender,
@@ -29,7 +29,13 @@ export class BunnyService {
       age: bunny.age,
     };
 
-    return this.http.post('http://localhost:3000/bunny', savedData)
+    return this.http.post<Bunny>('http://localhost:3000/bunny', savedData).pipe(
+      tap(newBunny =>{
+        this.bunnies.push(newBunny);
+        console.log("New bunny added: ", newBunny)
+        console.log("lets update the component method")
+      })
+    )
   }
 
   getBunnies(): Observable<Bunny[]> {

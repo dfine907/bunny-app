@@ -45,9 +45,11 @@ app.get('/bunnyform', (req, res) => {
 });
 
 app.post('/bunny', async (req, res) => {
-  // breeds.push(req.body);
   const data = await pool.createBunnyData(req.body);
-  res.send(data);
+  console.log({ data: data.rows[0]})
+  const newBunny = data.rows[0];
+  console.log("Simplifying data sent from backend to just the one bunny!")
+  res.send(newBunny);
 });
 
 app.listen(port, () => {
