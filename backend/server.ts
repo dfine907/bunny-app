@@ -8,12 +8,9 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const bunnies: any[] = [];
-
-//https://deadsimplechat.com/blog/rest-api-with-postgresql-and-node-js/
-
+// const bunnies: any[] = [];
 app.get('/', (req, res) => {
-  res.send('👋🏽 Home page for bunny app!');
+  res.send('Home page for bunny app!');
 });
 
 app.get('/bunnies', async (req, res) => {

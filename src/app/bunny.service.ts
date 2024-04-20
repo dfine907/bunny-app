@@ -12,7 +12,7 @@ export class BunnyService {
   public breeds: Breed[] = [];
 
   public getBreedById(id: number) {
-    return this.breeds.find(b => b.breed_id == id)?.breed_name
+    return this.breeds.find((b) => b.breed_id == id)?.breed_name;
   }
 
   constructor(public http: HttpClient) {
@@ -29,7 +29,7 @@ export class BunnyService {
       age: bunny.age,
     };
 
-    return this.http.post('http://localhost:3000/bunny', savedData)
+    return this.http.post('http://localhost:3000/bunny', savedData);
   }
 
   getBunnies(): Observable<Bunny[]> {
@@ -47,17 +47,16 @@ export class BunnyService {
   refetchBunnies() {
     this.getBunnies().subscribe((res) => (this.bunnies = res));
   }
-  
+
   refetchBreeds() {
     this.getBreeds().subscribe((res) => (this.breeds = res));
   }
 
   reLoadBunnyData() {
-    this.refetchBunnies()
-    this.refetchBreeds()
+    this.refetchBunnies();
+    this.refetchBreeds();
   }
-
 }
 
-//make a function that will delete a button when delete 
+//make a function that will delete a button when delete
 //passes the chosen id into the function associatied with button and deletes
