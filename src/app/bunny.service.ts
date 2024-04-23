@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BunnyService {
+  private URL = 'http://localhost:3000';
   public bunnies: Bunny[] = [];
   public breeds: Breed[] = [];
 
@@ -16,8 +17,12 @@ export class BunnyService {
   }
 
   constructor(public http: HttpClient) {
-    this.getBunnies().subscribe((res) => (this.bunnies = res));
+    this.loadBunnies();
     this.getBreeds().subscribe((res) => (this.breeds = res));
+  }
+
+  loadBunnies() {
+    this.getBunnies().subscribe((res) => (this.bunnies = res));
   }
 
   addBunny(bunny: Bunny) {
@@ -29,32 +34,22 @@ export class BunnyService {
       age: bunny.age,
     };
 
-    return this.http.post('http://localhost:3000/bunny', savedData);
+    return this.http.post(`${this.URL}/bunny`, savedData);
+  }
+
+  deleteBunny(bunny: Bunny): Observable<any> {
+    return this.http.delete(`${this.URL}/bunny/${bunny.id}`);
   }
 
   getBunnies(): Observable<Bunny[]> {
     return this.http
-      .get<Bunny[]>('http://localhost:3000/bunnies')
-      .pipe(tap((data) => console.log(data)));
+      .get<Bunny[]>(`${this.URL}/bunnies`)
+      .pipe(tap((data) => console.log('Bunnies: ', data)));
   }
 
   getBreeds(): Observable<Breed[]> {
-    return this.http
-      .get<Breed[]>('http://localhost:3000/breeds')
-      .pipe(tap((data) => console.log(data)));
-  }
-
-  refetchBunnies() {
-    this.getBunnies().subscribe((res) => (this.bunnies = res));
-  }
-
-  refetchBreeds() {
-    this.getBreeds().subscribe((res) => (this.breeds = res));
-  }
-
-  reLoadBunnyData() {
-    this.refetchBunnies();
-    this.refetchBreeds();
+    return this.http.get<Breed[]>(`${this.URL}/breeds`);
+    // .pipe(tap((data) => console.log(data)));
   }
 }
 

@@ -4,6 +4,9 @@
     <p>Age: {{ bunny.age }}</p>
     <p>Gender: {{ bunny.gender }}</p>
     <p>Breed: {{ bunnyService.getBreedById(bunny.breed) }}</p>
-    <p>Date of Birth: {{ bunny.dob }}</p>
+    <p>Date of Birth: {{ bunny.dob | date:'longDate'}} </p>
+    <button class="bg-success-subtle m-1 rounded-2" (click)="bunnyService.deleteBunny(bunny)">Remove Bunny</button>
   </div>
+
+  
 </div>

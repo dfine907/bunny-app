@@ -47,6 +47,11 @@ app.post('/bunny', async (req, res) => {
   res.send(data);
 });
 
+app.delete('/bunny/:id', async (req, res) => {
+  const message = await pool.deleteBunny(Number(req.params.id))
+  res.send(message)
+})
+
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
