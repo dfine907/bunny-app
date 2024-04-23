@@ -37,8 +37,15 @@ export class BunnyFormComponent implements OnInit {
     });
   }
 
-  onDeleteBunny(bunny: Bunny) {
-    this.bunnyService.deleteBunny(bunny).subscribe((res) => {
+  // onDeleteBunny(bunny: Bunny) {
+  //   this.bunnyService.deleteBunny(bunny).subscribe((res) => {
+  //     this.bunnyService.loadBunnies()
+  //     console.log(res);
+  //   })
+  // }
+
+  onDeleteBunny(id: number) {
+    this.bunnyService.deleteBunny(id).subscribe((res) => {
       this.bunnyService.loadBunnies()
       console.log(res);
       
@@ -46,34 +53,8 @@ export class BunnyFormComponent implements OnInit {
   }
  
   onSubmitForm() {
-    // const formatDate = (dateString: string): string => {
-    //   const options: Intl.DateTimeFormatOptions = {
-    //     year: 'numeric',
-    //     month: 'long',
-    //     day: 'numeric',
-    //   };
-    //   return new Date(dateString).toLocaleDateString('en-US', options);
-    // };
     console.log(this.bunnyService.bunnies, 'Submitted');
   }
-  // **
-
-  // onSubmitForm() {
-  //     // const dobValue = this.bunnyForm.get('dob').value; // Get dob value from form
-  //     // this.formattedDate = this.formatDate(dobValue); // Format date and set to formattedDate
-
-  //     console.log("Form Submitted");
-
-  //   }
-
-  // private formatDate(dateString: string): string {
-  //   const options: Intl.DateTimeFormatOptions = {
-  //     year: 'numeric',
-  //     month: 'long',
-  //     day: 'numeric',
-  //   };
-  //   return new Date(dateString).toLocaleDateString('en-US', options);
-  // }
 
   private initForm() {
     this.bunnyForm = this.fb.group({
@@ -81,8 +62,7 @@ export class BunnyFormComponent implements OnInit {
       gender: this.fb.control(''),
       breed: this.fb.control(''),
       age: this.fb.control(''),
-      dob: this.fb.control(
-        [new Date().toISOString().substring(0, 10)],
+      dob: this.fb.control('',
         Validators.required
       ),
     });

@@ -20,6 +20,7 @@ interface BunnyRow {
   breed: number;
   gender: string;
   dob: string;
+  age: number;
 }
 
 interface BreedRow {
@@ -33,25 +34,29 @@ async function getBunnyData(): Promise<BunnyRow[]> {
   });
 }
 
-async function createBunnyData(bunny: any): Promise<any> {
-  const text =
-    'INSERT INTO bunny(name, gender, breed, dob) VALUES($1, $2, $3, $4) RETURNING *';
-  const values = [bunny.name, bunny.gender, bunny.breed, bunny.dob];
-  return pool.query(text, values);
-}
-
-async function deleteBunny(bunnyId: number): Promise<string> {
-  pool.query(`DELETE FROM bunny WHERE bunny_id = ${bunnyId} `).then((res) => {
-    console.log(res);
-    return 'Bunny deleted';
-  });
-  return 'Bunny not found';
-}
-
 async function getBreedData(): Promise<BreedRow[]> {
   return pool.query('SELECT * FROM breed').then((res) => {
     return res.rows;
   });
+}
+
+async function createBunnyData(bunny: any): Promise<any> {
+  const text =
+    'INSERT INTO bunny(name, gender, breed, dob, age) VALUES($1, $2, $3, $4, $5) RETURNING *';
+  const values = [bunny.name, bunny.gender, bunny.breed, bunny.dob, bunny.age];
+  return pool.query(text, values);
+}
+
+async function deleteBunny(bunnyId: number): Promise<string> {
+  const result = await pool.query(
+    `DELETE FROM bunny WHERE bunny_id = ${bunnyId} RETURNING *`
+  );
+
+  if (result.rowCount === 0) {
+    return 'Bunny Id not found';
+  }
+
+  return 'Message: Bunny deleted';
 }
 
 export default {

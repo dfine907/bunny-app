@@ -21,9 +21,7 @@ export class BunnyService {
     this.getBreeds().subscribe((res) => (this.breeds = res));
   }
 
-  loadBunnies() {
-    this.getBunnies().subscribe((res) => (this.bunnies = res));
-  }
+  
 
   addBunny(bunny: Bunny) {
     const savedData = {
@@ -37,8 +35,16 @@ export class BunnyService {
     return this.http.post(`${this.URL}/bunny`, savedData);
   }
 
-  deleteBunny(bunny: Bunny): Observable<any> {
-    return this.http.delete(`${this.URL}/bunny/${bunny.id}`);
+  loadBunnies() {
+    this.getBunnies().subscribe((res) => (this.bunnies = res));
+  }
+
+  // deleteBunny(bunny: Bunny): Observable<any> {
+  //   return this.http.delete(`${this.URL}/bunny/${bunny.id}`);
+  // }
+
+  deleteBunny(id: number): Observable<any> {
+    return this.http.delete(`${this.URL}/bunny/${id}`);
   }
 
   getBunnies(): Observable<Bunny[]> {
@@ -53,5 +59,5 @@ export class BunnyService {
   }
 }
 
-//make a function that will delete a button when delete
-//passes the chosen id into the function associatied with button and deletes
+//make a function that will delete a bunny
+//passes the chosen id into the function associatied with button 

@@ -49,7 +49,7 @@ app.post('/bunny', async (req, res) => {
 
 app.delete('/bunny/:id', async (req, res) => {
   const message = await pool.deleteBunny(Number(req.params.id))
-  res.send(message)
+  res.send({message})
 })
 
 app.listen(port, () => {
