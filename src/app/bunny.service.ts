@@ -45,7 +45,12 @@ export class BunnyService {
   deleteBunny(id: number): Observable<any> {
     return this.http.delete(`${this.URL}/bunny/${id}`);
   }
-  
+  // *** UPDATE ⬇️: https://jasonwatmore.com/post/2020/10/07/angular-http-put-request-examples  *****
+  updateBunny(id:number): Observable<any> {
+    const body = { title: 'Not sure what' }
+    return this.http.put(`${this.URL}/bunny/${id}`, body);
+  }
+
 
   getBunnies(): Observable<Bunny[]> {
     return this.http

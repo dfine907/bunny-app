@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { Pool, PoolConfig, QueryResult } from 'pg';
 
 // Below sets up the PostgreSQL connection configuration
@@ -42,11 +41,24 @@ async function getBreedData(): Promise<BreedRow[]> {
   });
 }
 
-  // ***** UPDATE FUNCTION 
-async function updateBunnyData (bunny: BunnyRow): Promise<QueryResult<BunnyRow>> {
-  const text = `UPDATE bunny SET name=${bunny.name}, gender=${bunny.gender}, breed=${bunny.breed}, dob=${bunny.dob}, age=${bunny.age} WHERE bunny_id = ${bunny.bunny_id} RETURNING *`;
-  console.log({text})
-  return pool.query(text);
+  // *  💥 UPDATE FUNCTION  * 
+// async function updateBunnyData (bunny: BunnyRow): Promise<QueryResult<BunnyRow>> {
+//   const text = `UPDATE bunny SET name=${bunny.name}, gender=${bunny.gender}, breed=${bunny.breed}, dob=${bunny.dob}, age=${bunny.age} WHERE bunny_id = ${bunny.bunny_id} RETURNING *`;
+//   console.log({text})
+//   return pool.query(text);
+// }
+
+
+// USED THIS WEB SITE TO REFACTOR:  https://node-postgres.com/features/queries
+
+async function updateBunnyData(bunny: BunnyRow): Promise<QueryResult<BunnyRow>> {
+  return pool.query(
+    `UPDATE bunny 
+     SET name=$1, gender=$2, breed=$3, dob=$4, age=$5 
+     WHERE bunny_id = $6 
+     RETURNING *`,
+    [bunny.name, bunny.gender, bunny.breed, bunny.dob, bunny.age, bunny.bunny_id]
+  );
 }
 
 async function createBunnyData(bunny: any): Promise<any> {
