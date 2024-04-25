@@ -1,10 +1,11 @@
 export interface Bunny {
-    id?: number;
+    bunny_id?: number;
     name: string;
     gender: string;
     breed: number;
     age: number;
     dob: Date,
+    bun_breed_name?: string
   }
 
   export interface Breed {

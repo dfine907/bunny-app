@@ -19,9 +19,8 @@ export class BunnyService {
   constructor(public http: HttpClient) {
     this.loadBunnies();
     this.getBreeds().subscribe((res) => (this.breeds = res));
-  }
 
-  
+  }
 
   addBunny(bunny: Bunny) {
     const savedData = {
@@ -46,6 +45,7 @@ export class BunnyService {
   deleteBunny(id: number): Observable<any> {
     return this.http.delete(`${this.URL}/bunny/${id}`);
   }
+  
 
   getBunnies(): Observable<Bunny[]> {
     return this.http
@@ -55,7 +55,6 @@ export class BunnyService {
 
   getBreeds(): Observable<Breed[]> {
     return this.http.get<Breed[]>(`${this.URL}/breeds`);
-    // .pipe(tap((data) => console.log(data)));
   }
 }
 

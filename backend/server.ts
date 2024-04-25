@@ -37,15 +37,22 @@ app.get('/breeds', async (req, res) => {
 app.get('/bunnyform', (req, res) => {
   const formData = req.body;
   console.log(formData);
-
   res.json({ message: 'BunData received successfully' });
 });
 
 app.post('/bunny', async (req, res) => {
-  // breeds.push(req.body);
   const data = await pool.createBunnyData(req.body);
   res.send(data);
 });
+
+app.put('/bunny/:id', async(req, res)=> {
+  await pool.updateBunnyData(req.body)
+  res.send("Bunny updated!")
+})
+
+
+
+
 
 app.delete('/bunny/:id', async (req, res) => {
   const message = await pool.deleteBunny(Number(req.params.id))

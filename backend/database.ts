@@ -1,4 +1,5 @@
-import { Pool, PoolConfig } from 'pg';
+import { log } from 'console';
+import { Pool, PoolConfig, QueryResult } from 'pg';
 
 // Below sets up the PostgreSQL connection configuration
 // https://stackoverflow.com/questions/57853681/how-to-connect-a-database-to-an-angular-web-application
@@ -15,12 +16,13 @@ const pool: Pool = new Pool(poolConfig);
 
 //this may change
 interface BunnyRow {
-  id: number;
+  bunny_id: number;
   name: string;
   breed: number;
   gender: string;
   dob: string;
   age: number;
+  bun_breed_name: string;
 }
 
 interface BreedRow {
@@ -29,15 +31,22 @@ interface BreedRow {
 }
 
 async function getBunnyData(): Promise<BunnyRow[]> {
-  return pool.query('SELECT * FROM bunny').then((res) => {
-    return res.rows;
-  });
+  return pool.query('SELECT bunny_id, name, breed, gender, dob, age, breed_name AS bun_breed_name FROM bunny INNER JOIN breed ON breed.breed_id = bunny.breed').then((res)=> {
+    return res.rows
+  })
 }
 
 async function getBreedData(): Promise<BreedRow[]> {
   return pool.query('SELECT * FROM breed').then((res) => {
     return res.rows;
   });
+}
+
+  // ***** UPDATE FUNCTION 
+async function updateBunnyData (bunny: BunnyRow): Promise<QueryResult<BunnyRow>> {
+  const text = `UPDATE bunny SET name=${bunny.name}, gender=${bunny.gender}, breed=${bunny.breed}, dob=${bunny.dob}, age=${bunny.age} WHERE bunny_id = ${bunny.bunny_id} RETURNING *`;
+  console.log({text})
+  return pool.query(text);
 }
 
 async function createBunnyData(bunny: any): Promise<any> {
@@ -47,15 +56,15 @@ async function createBunnyData(bunny: any): Promise<any> {
   return pool.query(text, values);
 }
 
+
+
 async function deleteBunny(bunnyId: number): Promise<string> {
   const result = await pool.query(
     `DELETE FROM bunny WHERE bunny_id = ${bunnyId} RETURNING *`
   );
-
   if (result.rowCount === 0) {
     return 'Bunny Id not found';
   }
-
   return 'Message: Bunny deleted';
 }
 
@@ -64,5 +73,6 @@ export default {
   getBunnyData,
   createBunnyData,
   getBreedData,
+  updateBunnyData,
   deleteBunny,
 };

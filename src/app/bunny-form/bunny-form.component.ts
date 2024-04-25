@@ -20,37 +20,22 @@ export class BunnyFormComponent implements OnInit {
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
-  // onAddBunny() {
+  // onAddBunny() {  **WRONG**
   //   this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
   //     console.log(res);
-
   //     this.bunnyForm.reset();
   //   });
   // }
- //refresh from the backend :
+ 
   onAddBunny() {
     this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
       this.bunnyService.loadBunnies()
-      // this.bunnyService.bunnies.push(this.bunnyForm.value);
       console.log(res);
       this.bunnyForm.reset();
     });
   }
-
-  // onDeleteBunny(bunny: Bunny) {
-  //   this.bunnyService.deleteBunny(bunny).subscribe((res) => {
-  //     this.bunnyService.loadBunnies()
-  //     console.log(res);
-  //   })
-  // }
-
-  onDeleteBunny(id: number) {
-    this.bunnyService.deleteBunny(id).subscribe((res) => {
-      this.bunnyService.loadBunnies()
-      console.log(res);
-      
-    })
-  }
+  
+  
  
   onSubmitForm() {
     console.log(this.bunnyService.bunnies, 'Submitted');

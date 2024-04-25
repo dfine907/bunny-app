@@ -3,10 +3,16 @@
     <h3>{{ bunny.name }}</h3>
     <p>Age: {{ bunny.age }}</p>
     <p>Gender: {{ bunny.gender }}</p>
-    <p>Breed: {{ bunnyService.getBreedById(bunny.breed) }}</p>
+    <p>Breed: {{ bunny.bun_breed_name }}</p>
     <p>Date of Birth: {{ bunny.dob | date:'longDate'}} </p>
+    
+    <!-- <button class="bg-danger m-1 rounded-2" (click)="bunnyService.deleteBunny(bunny.id)">Remove Bunny</button> -->
+    
+    <button class="bg-danger-subtle m-1 rounded-2" (click)="onDeleteBunny(bunny)">Remove Bunny</button>
 
-    <button class=" m-1 border-0 shadow rounded-2" (click)="bunnyService.deleteBunny(bunny.id)">Remove Bunny</button>
+    <!-- ** EDIT BUTTON ** -->
+    <button class="bg-primary rounded-2 ms-4">Edit Bunny</button>
   </div>
 
+  
 </div>
