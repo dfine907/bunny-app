@@ -6,12 +6,44 @@
     <p>Breed: {{ bunny.bun_breed_name }}</p>
     <p>Date of Birth: {{ bunny.dob | date:'longDate'}} </p>
     
-    <!-- <button class="bg-danger m-1 rounded-2" (click)="bunnyService.deleteBunny(bunny.id)">Remove Bunny</button> -->
-    
     <button class="bg-danger-subtle m-1 rounded-2" (click)="onDeleteBunny(bunny)">Remove Bunny</button>
 
     <!-- ** EDIT BUTTON ** -->
-    <button class="bg-primary rounded-2 ms-4">Edit Bunny</button>
+    <button class="bg-primary rounded-2 ms-4" (click)="editBunny(bunny)">Edit Bunny</button>
+  
+    <div *ngIf="editMode && bunny.bunny_id === editId">
+      <form  [formGroup]="editBunnyForm"  >
+      <input [formControl]="editName" name="name" placeholder="Name">
+      <input [formControl]="editAge" name="age" placeholder="Age">
+      
+      <select class="p-1 text-bg-success" [formControl]="editGender" id="gender" name="gender">
+        <option value="">Choose</option>
+        <option value="M">Boy Buns</option>
+        <option value="F">Girl Buns</option>
+    </select>
+     
+      <select class="p-1 text-bg-success" 
+       [formControl]="editBreed"
+                id="breed" 
+                name="breed">
+                    <option value="">Choose</option>
+                    <option 
+                      *ngFor="let breed of bunnyService.breeds" 
+                      [value]= "breed.breed_id">{{breed.breed_name}}
+                    </option>
+                </select>
+      <input [formControl]="editDOB" name="dob" type="date" (change)="updateDate($e)" >
+
+    </form>
+    
+    <button (click)="onUpdateBunny()">Save Changes</button>
+
+    <button (click)="onCancelEdit()">Cancel</button>
+    </div>
+  
+  
+  
+  
   </div>
 
   

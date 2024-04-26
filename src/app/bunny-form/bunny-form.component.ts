@@ -19,13 +19,6 @@ export class BunnyFormComponent implements OnInit {
   }
 
   bunnyAdditiondStatus = 'No Buns Added Yet';
-
-  // onAddBunny() {  **WRONG**
-  //   this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
-  //     console.log(res);
-  //     this.bunnyForm.reset();
-  //   });
-  // }
  
   onAddBunny() {
     this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
@@ -34,7 +27,6 @@ export class BunnyFormComponent implements OnInit {
       this.bunnyForm.reset();
     });
   }
-  
   
  
   onSubmitForm() {
