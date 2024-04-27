@@ -5,8 +5,9 @@ const app = express();
 const port = 3000;
 const cors = require('cors');
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
 
 // const bunnies: any[] = [];
 app.get('/', (req, res) => {
@@ -41,14 +42,23 @@ app.get('/bunnyform', (req, res) => {
 });
 
 app.post('/bunny', async (req, res) => {
+  console.log({ body: req.body })
   const data = await pool.createBunnyData(req.body);
   res.send(data);
 });
 
-app.put('/bunny/:id', async(req, res)=> {
-  await pool.updateBunnyData(req.body)
-  res.send("Bunny updated!")
-})
+app.put('/bunny/:id', async (req, res) => {
+  try {
+    const bunnyId = parseInt(req.params.id, 10);
+    const updatedBunny = await pool.updateBunnyData(req.body, bunnyId);
+    console.log({})
+    res.json({ message: 'Bunny updated!', updatedBunny });
+  } catch (error) {
+    console.error('Update failed:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 app.delete('/bunny/:id', async (req, res) => {
   const message = await pool.deleteBunny(Number(req.params.id))

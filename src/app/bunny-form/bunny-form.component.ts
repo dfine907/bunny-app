@@ -22,6 +22,7 @@ export class BunnyFormComponent implements OnInit {
  
   onAddBunny() {
     this.bunnyService.addBunny(this.bunnyForm.value).subscribe((res) => {
+      console.log({ bunnyForm: this.bunnyForm})
       this.bunnyService.loadBunnies()
       console.log(res);
       this.bunnyForm.reset();
