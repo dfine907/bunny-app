@@ -9,23 +9,20 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./bunny-list.component.css'],
 })
 export class BunnyListComponent {
-  constructor(public fb: FormBuilder, public bunnyService: BunnyService) {
-    
-    this.initForm()
-  }
+editBunnyForm: FormGroup;
+editMode = false;
+editId = 0;
 
-   editBunnyForm: FormGroup 
-
-
-  dobFormControl: FormControl;
-
-  editMode = false;
-  editId = 0;
-  editName = '';
-  editAge = 0;
-  editBreed = 0;
-  editGender = '';
-  editDOB: Date;
+constructor(private fb: FormBuilder, public bunnyService: BunnyService){
+  this.editBunnyForm = this.fb.group({
+    name: ["", Validators.required],
+    age: [""],
+    breed: [""],
+    gender: [""],
+    dob: ["", Validators.required],
+    bunny_id: [""]
+  })
+}
 
   onDeleteBunny(bunny: Bunny) {
     this.bunnyService.deleteBunny(bunny.bunny_id).subscribe((res) => {
@@ -34,41 +31,49 @@ export class BunnyListComponent {
     });
   }
 
-  updateDate($e) {
-    console.log($e);
+  updateDate($event) {
+    console.log($event);
   }
 
   editBunny(bunny: Bunny) {
-    console.log(bunny);
+    console.log("hitting", {bunny});
 
     this.editMode = true;
     this.editId = bunny.bunny_id;
-    this.editName = bunny.name;
-
-    this.editBunnyForm.controls['name'].setValue(bunny.name)
-    this.editAge = bunny.age;
-
-    this.editBreed = bunny.breed;
-    this.editBunnyForm.controls['breed'].setValue(bunny.breed)
-
-    this.editGender = bunny.gender;
-    this.editBunnyForm.controls['gender'].setValue(bunny.gender)
-
-    this.editDOB = bunny.dob;
-    this.editBunnyForm.controls['dob'].setValue(bunny.dob)
-
+    this.editBunnyForm.setValue({
+      name: bunny.name,
+      age: bunny.age,
+      breed: bunny.breed,
+      gender: bunny.gender,
+      dob: bunny.dob,
+      bunny_id: bunny.bunny_id
+    })
+    
+  
     
 
   }
-  onEditCancel() {
+  onCancelEdit() {
     this.editMode = false;
   }
 
-  onUpdateBunny() {
-    console.log('Editing Name: ' + this.editName);
-    console.log(this.dobFormControl.value);
-    
+ onUpdateBunny() {
+  if (this.editBunnyForm.valid) {
+    const bunnyId = this.editBunnyForm.value.bunny_id; // Ensure this is set when editing
+    this.bunnyService.updateBunny(bunnyId, this.editBunnyForm.value).subscribe({
+      next: (res) => {
+        console.log('Update successful:', res);
+        this.bunnyService.loadBunnies();
+        this.editMode = false;
+        this.editBunnyForm.reset();
+      },
+      error: (err) => console.error('Failed to update bunny:', err)
+    });
+  } else {
+    console.error('Form is invalid');
   }
+}
+
 
   private initForm() {
     this.editBunnyForm = this.fb.group({
@@ -79,6 +84,7 @@ export class BunnyListComponent {
       dob: this.fb.control('',
         Validators.required
       ),
+      bunny_id: this.fb.control('')
     });
   }
 }

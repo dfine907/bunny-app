@@ -26,7 +26,7 @@ interface BunnyRow {
 
 interface BreedRow {
   breed_id: number;
-  breed_name: number;
+  breed_name: string; // string is what your bunny.ts file has listed
 }
 
 async function getBunnyData(): Promise<BunnyRow[]> {
@@ -51,19 +51,38 @@ async function getBreedData(): Promise<BreedRow[]> {
 
 // USED THIS WEB SITE TO REFACTOR:  https://node-postgres.com/features/queries
 
-async function updateBunnyData(bunny: BunnyRow): Promise<QueryResult<BunnyRow>> {
-  return pool.query(
-    `UPDATE bunny 
-     SET name=$1, gender=$2, breed=$3, dob=$4, age=$5 
-     WHERE bunny_id = $6 
-     RETURNING *`,
-    [bunny.name, bunny.gender, bunny.breed, bunny.dob, bunny.age, bunny.bunny_id]
-  );
+async function updateBunnyData(bunny: BunnyRow, bunnyId: number): Promise<any> {
+  const query = `
+    UPDATE bunny 
+    SET 
+      name = COALESCE($1, name), 
+      gender = COALESCE($2, gender), 
+      breed = COALESCE($3, breed), 
+      dob = COALESCE($4, dob), 
+      age = COALESCE($5, age) 
+    WHERE bunny_id = $6
+    RETURNING *;
+  `;
+  const values = [bunny.name, bunny.gender, bunny.breed, bunny.dob, bunny.age, bunnyId];
+  try {
+    const result = await pool.query(query, values);
+    return result.rows[0]; // Assuming you want to return the updated bunny data
+  } catch (error) {
+    console.error('Failed to update bunny:', error);
+    throw error;
+  }
 }
 
+
 async function createBunnyData(bunny: any): Promise<any> {
-  const text =
-    'INSERT INTO bunny(name, gender, breed, dob, age) VALUES($1, $2, $3, $4, $5) RETURNING *';
+  console.log("createBunnyData: ",{bunny})
+  if(!bunny.breed) {
+    bunny.breed = 1
+  }
+  const text = `
+    INSERT INTO bunny(name, gender, breed, dob, age)
+    VALUES($1, $2, $3, $4, $5)
+    RETURNING *`;
   const values = [bunny.name, bunny.gender, bunny.breed, bunny.dob, bunny.age];
   return pool.query(text, values);
 }

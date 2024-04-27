@@ -3,7 +3,7 @@
     <h3>{{ bunny.name }}</h3>
     <p>Age: {{ bunny.age }}</p>
     <p>Gender: {{ bunny.gender }}</p>
-    <p>Breed: {{ bunny.bun_breed_name }}</p>
+    <p>Breed: {{ bunny.breed }}</p>
     <p>Date of Birth: {{ bunny.dob | date:'longDate'}} </p>
     
     <button class="bg-danger-subtle m-1 rounded-2" (click)="onDeleteBunny(bunny)">Remove Bunny</button>
@@ -13,17 +13,17 @@
   
     <div *ngIf="editMode && bunny.bunny_id === editId">
       <form  [formGroup]="editBunnyForm"  >
-      <input [formControl]="editName" name="name" placeholder="Name">
-      <input [formControl]="editAge" name="age" placeholder="Age">
+      <input formControlName="name" name="name" placeholder="Name">
+      <input formControlName="age" name="age" placeholder="Age">
       
-      <select class="p-1 text-bg-success" [formControl]="editGender" id="gender" name="gender">
+      <select class="p-1 text-bg-success" formControlName="gender" id="gender" name="gender">
         <option value="">Choose</option>
         <option value="M">Boy Buns</option>
         <option value="F">Girl Buns</option>
     </select>
      
       <select class="p-1 text-bg-success" 
-       [formControl]="editBreed"
+       formControlName="breed"
                 id="breed" 
                 name="breed">
                     <option value="">Choose</option>
@@ -32,7 +32,7 @@
                       [value]= "breed.breed_id">{{breed.breed_name}}
                     </option>
                 </select>
-      <input [formControl]="editDOB" name="dob" type="date" (change)="updateDate($e)" >
+      <input formControlName="dob" name="dob" type="date" (change)="updateDate($event)" >
 
     </form>
     
