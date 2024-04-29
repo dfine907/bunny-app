@@ -5,46 +5,71 @@
     <p>Gender: {{ bunny.gender }}</p>
     <p>Breed: {{ bunny.bun_breed_name }}</p>
     <p>Date of Birth: {{ bunny.dob | date:'longDate'}} </p>
-    
+
     <button class="bg-danger-subtle m-1 rounded-2" (click)="onDeleteBunny(bunny)">Remove Bunny</button>
 
     <!-- ** EDIT BUTTON ** -->
     <button class="bg-primary rounded-2 ms-4" (click)="editBunny(bunny)">Edit Bunny</button>
-  
-    <div *ngIf="editMode && bunny.bunny_id === editId">
-      <form  [formGroup]="editBunnyForm"  >
-      <input [formControl]="editName" name="name" placeholder="Name">
-      <input [formControl]="editAge" name="age" placeholder="Age">
-      
-      <select class="p-1 text-bg-success" [formControl]="editGender" id="gender" name="gender">
-        <option value="">Choose</option>
-        <option value="M">Boy Buns</option>
-        <option value="F">Girl Buns</option>
-    </select>
-     
-      <select class="p-1 text-bg-success" 
-       [formControl]="editBreed"
-                id="breed" 
-                name="breed">
-                    <option value="">Choose</option>
-                    <option 
-                      *ngFor="let breed of bunnyService.breeds" 
-                      [value]= "breed.breed_id">{{breed.breed_name}}
-                    </option>
-                </select>
-      <input [formControl]="editDOB" name="dob" type="date" (change)="updateDate($e)" >
 
-    </form>
-    
-    <button (click)="onUpdateBunny()">Save Changes</button>
+    <!-- <div *ngIf="editMode && bunny.bunny_id === editId">
+      <form [formGroup]="editBunnyForm">
+        <input [formControl]="editName" name="name" placeholder="Name">
+        <input [formControl]="editAge" name="age" placeholder="Age">
 
-    <button (click)="onCancelEdit()">Cancel</button>
-    </div>
-  
-  
-  
-  
+        <select class="p-1 text-bg-success" [formControl]="editGender" id="gender" name="gender">
+          <option value="">Choose</option>
+          <option value="M">Boy Buns</option>
+          <option value="F">Girl Buns</option>
+        </select>
+
+        <select class="p-1 text-bg-success" [formControl]="editBreed" id="breed" name="breed">
+          <option value="">Choose</option>
+          <option *ngFor="let breed of bunnyService.breeds" 
+          [value]="breed.breed_id">{{breed.breed_name}}
+          </option>
+        </select>
+
+        <input [formControl]="editDOB" name="dob" type="date" (change)="updateDate($e)">
+
+      </form>
+
+      <button (click)="onUpdateBunny()">Save Changes</button>
+      <button (click)="onCancelEdit()">Cancel</button>
+    </div> -->
+
+
   </div>
+</div>
 
+<div>
   
+  <bunny-modal id="modal-1">
+      <div class="modal-header">
+          <h5 class="modal-title">Angular + Bootstrap Modal #1</h5>
+          <button type="button" class="btn-close" (click)="modalService.close();"></button>
+      </div>
+      <div class="modal-body">
+          <p>This bootstrap modal was opened with Angular!</p>
+          <p>
+              <label class="form-label">Page text:</label>
+            
+          </p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modalService.close();">Close</button>
+      </div>
+  </bunny-modal>
+  
+  <!-- <bunny-modal id="modal-2">
+      <div class="modal-header">
+          <h5 class="modal-title">Angular + Bootstrap Modal #2</h5>
+          <button type="button" class="btn-close" (click)="modalService.close();"></button>
+      </div>
+      <div class="modal-body">
+          <p style="padding-bottom: 1500px;">This is a tall modal to demonstrate scrolling modal content.</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modalService.close();">Close</button>
+      </div>
+  </bunny-modal> -->
 </div>

@@ -64,6 +64,11 @@ export class BunnyService {
       .get<Bunny[]>(`${this.URL}/bunnies`)
       .pipe(tap((data) => console.log('Bunnies: ', data)));
   }
+  getBunny(id): Observable<Bunny> {
+    return this.http
+      .get<Bunny>(`${this.URL}/bunny/${id}`)
+      .pipe(tap((data) => console.log('Bunny: ', data)));
+  }
 
   getBreeds(): Observable<Breed[]> {
     return this.http.get<Breed[]>(`${this.URL}/breeds`);

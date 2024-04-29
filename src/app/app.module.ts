@@ -14,6 +14,7 @@ import { BunnyFormComponent } from './bunny-form/bunny-form.component';
 
 import { BunnyListComponent } from './bunny-list/bunny-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BunnyModalComponent } from './bunny-modal/bunny-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BunnyFormComponent,
     BunnyListComponent,
     NavbarComponent,
+    BunnyModalComponent,
+    
   ],
   imports: [
     BrowserModule,

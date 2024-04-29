@@ -49,6 +49,11 @@ app.put('/bunny/:id', async(req, res)=> {
   await pool.updateBunnyData(req.body)
   res.send("Bunny updated!")
 })
+app.get('/bunny/:id', async(req, res)=> {
+  const oneBun = await pool.getOneBunny(req.body)
+  res.send(oneBun)
+})
+
 
 app.delete('/bunny/:id', async (req, res) => {
   const message = await pool.deleteBunny(Number(req.params.id))
