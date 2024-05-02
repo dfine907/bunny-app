@@ -47,17 +47,16 @@ app.post('/bunny', async (req, res) => {
 
 app.put('/bunny/:id', async(req, res)=> {
   await pool.updateBunnyData(req.body)
-  res.send("Bunny updated!")
+  res.json({ success: true, message: "Bunny data has been successfully updated." });
 })
 app.get('/bunny/:id', async(req, res)=> {
   const oneBun = await pool.getOneBunny(req.body)
   res.send(oneBun)
 })
 
-
 app.delete('/bunny/:id', async (req, res) => {
-  const message = await pool.deleteBunny(Number(req.params.id))
-  res.send({message})
+  await pool.deleteBunny(Number(req.params.id))
+  res.json({ success: true, message: "Bunny data has been successfully DELETED." });
 })
 
 app.listen(port, () => {

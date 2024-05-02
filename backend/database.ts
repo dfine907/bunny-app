@@ -1,3 +1,4 @@
+
 import { Pool, PoolConfig, QueryResult } from 'pg';
 
 // Below sets up the PostgreSQL connection configuration
@@ -36,8 +37,12 @@ async function getBunnyData(): Promise<BunnyRow[]> {
 }
 
 async function getOneBunny(id: number): Promise<BunnyRow[]> {
-  return pool.query(`SELECT bunny_id, name, breed, gender, dob, age, breed_name AS bun_breed_name FROM bunny WHERE bunny_id = ${id} INNER JOIN breed ON breed.breed_id = bunny.breed`).then((res)=> {
+  return pool.query(`SELECT bunny_id, name, breed, gender, dob, age, breed_name AS bun_breed_name FROM bunny INNER JOIN breed ON breed.breed_id = bunny.breed  WHERE bunny_id = ${id}
+  `).then((res)=> {
+    console.log(res.rows);
+    
     return res.rows
+    
   })
 }
 

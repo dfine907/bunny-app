@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BunnyService } from '../bunny.service';
 import { Bunny } from '../bunny';
@@ -19,6 +19,10 @@ export class BunnyFormComponent implements OnInit {
     this.initForm();
   }
 
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log(changes)
+  // }
+
   bunnyAdditiondStatus = 'No Buns Added Yet';
 
   onAddBunny() {
@@ -35,19 +39,19 @@ export class BunnyFormComponent implements OnInit {
 
   private initForm() {
     
-    if (this.bunnyId) {
-      this.bunnyService.getBunny(this.bunnyId).subscribe((bunnyData) => {
-        this.bunnyForm = this.fb.group({
-          name: this.fb.control(bunnyData.name, Validators.required),
-          gender: this.fb.control(bunnyData.gender),
-          breed: this.fb.control(bunnyData.breed),
-          age: this.fb.control(bunnyData.age),
-          dob: this.fb.control(bunnyData.dob, Validators.required),
-        });
-      })
+    // if (this.bunnyId) {
+    //   this.bunnyService.getBunny(this.bunnyId).subscribe((bunnyData) => {
+    //     this.bunnyForm = this.fb.group({
+    //       name: this.fb.control(bunnyData.name, Validators.required),
+    //       gender: this.fb.control(bunnyData.gender),
+    //       breed: this.fb.control(bunnyData.breed),
+    //       age: this.fb.control(bunnyData.age),
+    //       dob: this.fb.control(bunnyData.dob, Validators.required),
+    //     });
+    //   })
 
       
-    } else {
+    // } else {
       this.bunnyForm = this.fb.group({
         name: this.fb.control('', Validators.required),
         gender: this.fb.control(''),
@@ -55,6 +59,6 @@ export class BunnyFormComponent implements OnInit {
         age: this.fb.control(''),
         dob: this.fb.control('', Validators.required),
       });
-    }
+    // }
   }
 }

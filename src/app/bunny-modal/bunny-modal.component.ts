@@ -20,7 +20,7 @@ export class BunnyModalComponent implements OnInit, OnDestroy {
     ngOnInit() {
         // add self (this modal instance) to the modal service so it can be opened from any component
         this.modalService.add(this);
-        console.log("HELLO");
+        // console.log(" Bunny Modal working");
         
 
         // move element to bottom of page (just before </body>) so it can be displayed above everything else

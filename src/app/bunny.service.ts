@@ -55,6 +55,8 @@ export class BunnyService {
       age: bunny.age,
       bunny_id: bunny.bunny_id  
     }
+    console.log(bunny);
+    
     return this.http.put(`${this.URL}/bunny/${bunny.bunny_id}`, body);
   }
 
