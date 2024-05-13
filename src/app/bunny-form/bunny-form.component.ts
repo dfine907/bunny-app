@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
   Input,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BunnyService } from '../bunny.service';
