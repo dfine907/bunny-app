@@ -1,11 +1,7 @@
-import {
-  Component,
-  OnInit,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BunnyService } from '../bunny.service';
 
+import { BunnyService } from '../bunny.service';
 @Component({
   selector: 'app-bunny-form',
   templateUrl: './bunny-form.component.html',
@@ -15,6 +11,7 @@ export class BunnyFormComponent implements OnInit {
   bunnyForm: FormGroup;
   formattedDate: string = '';
   @Input() bunnyId?: number;
+  @Input() createBunnyButton: boolean = true
 
   constructor(public fb: FormBuilder, public bunnyService: BunnyService) {}
 
@@ -46,6 +43,10 @@ export class BunnyFormComponent implements OnInit {
 
   onSubmitForm() {
     console.log(this.bunnyService.bunnies, 'Submitted');
+  }
+
+  openCreateModal() {
+    alert("Hello Bunny")
   }
 
   private initForm() {
